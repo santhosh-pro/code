@@ -1,0 +1,53 @@
+#page-landing {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--color-text-in-primary);
+    background: var(--color-primary);
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5.2rem;    
+}
+
+.logo-container img {
+    height: 10rem;
+}
+
+.logo-container h2 {
+    font: 200 5.6rem 'Tulpen One';
+    margin-left: 1rem;
+    line-height: 4.6rem;
+    margin-top: 0.8rem;    
+}
+
+.page-landing-header {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+}
+
+.page-landing-header .top-bar-container {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: var(--color-text-in-primary);
+    padding: 1.6rem 0;   
+}
+
+.page-landing-header .top-bar-container .social-network-icon-content img {
+    height: 2.5rem;
+    width: 2.5rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+}
