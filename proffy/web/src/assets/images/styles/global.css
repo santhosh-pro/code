@@ -55,7 +55,7 @@ textarea {
 }
 
 @media(min-width: 700px) {
-    :root{
+    :root {
         font-size: 62.5%;
     }
 }
