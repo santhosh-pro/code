@@ -1,6 +1,9 @@
 :root {
     font-size: 60%;
+
     --color-background: #191919;
+   
+    
 }
 
 * {
@@ -20,7 +23,7 @@ body {
 
 #root {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 }
 
