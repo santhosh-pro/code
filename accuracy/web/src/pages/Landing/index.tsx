@@ -5,6 +5,7 @@ import facebookIcon from '../../assets/image/icon/facebook.svg';
 import instagramIcon from '../../assets/image/icon/instagram.svg';
 import linkedinIcon from '../../assets/image/icon/linkedin.svg';
 import menuIcon from '../../assets/image/icon/menu2.svg';
+import projectImg from '../../assets/image/info-menu/project.jpg'
 
 import './styles.css';
 
@@ -32,6 +33,7 @@ function Landing () {
             li[3].style.height = "3.5rem";
             li[4].style.height = "3.5rem";
             li[5].style.height = "3.5rem";
+            li[6].style.height = "3.5rem";
 
         } else {
 
@@ -72,7 +74,10 @@ function Landing () {
                                 </li>
                                 <li>
                                     <a href="#">Projetos</a>
-                                </li>                            
+                                </li>  
+                                <li>
+                                    <a href="#">Tecnologia</a>
+                                </li>                                                            
                                 <li>
                                     <a href="#">Casos de Sucesso</a>
                                 </li>                            
@@ -86,16 +91,22 @@ function Landing () {
                         </nav> 
                    
                 }
+
+                <article className="page-landing-info">
+                    <section className="info">
+                        <img src={projectImg} alt="Projetos">
+                        </img>
+                    </section>
+                </article>
             
 
-
-                {/*
-                <div className="social-network-icon-content">
-                    <img src={facebookIcon} alt="Facebook" />
-                    <img src={instagramIcon} alt="Instagran" />
-                    <img src={linkedinIcon} alt="Linkedin" />
-                </div>
-                */}
+                <footer className="page-landing-footer">
+                    <div className="social-network-content">
+                        <img src={facebookIcon} alt="Facebook" />
+                        <img src={instagramIcon} alt="Instagran" />
+                        <img src={linkedinIcon} alt="Linkedin" />
+                    </div>
+                </footer>
 
            </div>
        </div>
