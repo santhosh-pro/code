@@ -11,6 +11,39 @@ import './styles.css';
 function Landing () {
 
     const [ menuVisbile, setMenuVisible ] = useState(false);
+
+    const handleClickMenu = () => {
+
+        setMenuVisible(!menuVisbile)
+
+    }
+    useEffect ( () => {
+
+        if ( menuVisbile ) {
+
+            let el = document.getElementById( 'menu-container') as HTMLDivElement;
+            //el.classList.toggle('open');// 
+            el.style.height = "86vh";
+
+            let li = document.getElementsByTagName( 'li' ) as HTMLCollectionOf<HTMLLIElement>;
+            li[0].style.height = "3.5rem";
+            li[1].style.height = "3.5rem";
+            li[2].style.height = "3.5rem";
+            li[3].style.height = "3.5rem";
+            li[4].style.height = "3.5rem";
+            li[5].style.height = "3.5rem";
+
+        } else {
+
+            let el = document.getElementById( 'menu-container') as HTMLDivElement;
+            
+            if ( el ) {
+                el.style.height = "0";
+            }
+        }
+
+    }, [menuVisbile])
+
     
     return (
        <div id="page-landing">
@@ -22,14 +55,14 @@ function Landing () {
                             <h2>EXATIDÃO ENGENHARIA</h2>
                         </div>
                         <div className="menu-img-container">
-                            <img src={menuIcon} alt="Menu" onClick={()=>setMenuVisible(!menuVisbile)} />  
+                            <img src={menuIcon} alt="Menu" onClick={()=>handleClickMenu()} />  
                         </div>
                     </div>
                 </header>
                 {/*<label>&#9776;</label>*/ }
                 { menuVisbile &&
-                    <div className="menu-container" >
-                        <nav className="navbar-menu">
+                   
+                        <nav id="menu-container" className="navbar-menu">
                             <ul>
                                 <li>
                                     <a href="#">Home</a>
@@ -50,8 +83,8 @@ function Landing () {
                                     <a href="#">Contato</a>
                                 </li>
                             </ul>                        
-                        </nav>
-                    </div>
+                        </nav> 
+                   
                 }
             
 
