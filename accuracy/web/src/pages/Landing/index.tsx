@@ -5,7 +5,15 @@ import facebookIcon from '../../assets/image/icon/facebook.svg';
 import instagramIcon from '../../assets/image/icon/instagram.svg';
 import linkedinIcon from '../../assets/image/icon/linkedin.svg';
 import menuIcon from '../../assets/image/icon/menu2.svg';
-import projectImg from '../../assets/image/info-menu/project.jpg'
+
+import projectImg from '../../assets/image/info-menu/project.jpg';
+import whoWeAreImg from '../../assets/image/info-menu/WhoWeAre.jpeg';
+import successCaseImg from '../../assets/image/info-menu/SuccessCase.png';
+
+
+
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 import './styles.css';
 
@@ -18,6 +26,7 @@ function Landing () {
         setMenuVisible(!menuVisbile)
 
     }
+
     useEffect ( () => {
 
         if ( menuVisbile ) {
@@ -37,7 +46,7 @@ function Landing () {
 
         } else {
 
-            let el = document.getElementById( 'menu-container') as HTMLDivElement;
+            let el = document.getElementById( 'menu-container') as HTMLElement;
             
             if ( el ) {
                 el.style.height = "0";
@@ -92,12 +101,17 @@ function Landing () {
                    
                 }
 
-                <article className="page-landing-info">
-                    <section className="info">
-                        <img src={projectImg} alt="Projetos">
-                        </img>
+                <main className="page-landing-main">
+                    <section className="page-landing-section">
+                        <div className="page-landing-slider">
+                            <AliceCarousel autoPlay autoPlayInterval={3000} buttonsDisabled={true} >
+                                <img src={projectImg} className="sliderimg" />                          
+                                <img src={whoWeAreImg} className="sliderimg" />       
+                                <img src={successCaseImg} className="sliderimg" />       
+                            </AliceCarousel>
+                        </div>
                     </section>
-                </article>
+                </main>
             
 
                 <footer className="page-landing-footer">

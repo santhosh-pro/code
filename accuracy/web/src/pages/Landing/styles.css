@@ -69,7 +69,7 @@
 }
 
 #menu-container  {
-    width: 90%;
+    width: 100%;
     position: absolute;
     z-index: 10;
 }
@@ -77,18 +77,19 @@
 #menu-container  ul {
     list-style: none;
     position: relative;
-    margin-left: 2rem;
+    margin-left: 4rem;
+    margin-right: 2rem;
 }
 
 #menu-container ul li {
-    width: 100%;
+    width: 97%;
     height: 0.9rem;
     transition: height 0.5s !important;
     animation: fadein 1.5s;
 
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
 }
 
 
@@ -133,31 +134,46 @@
     }
 }
 
-.page-landing-info {
-    width: 90%;
-    background-color: #ccc;
+.page-landing-main {
+    width: 100%;
+    height: 85vh;
     border-radius: 0.4rem;
     margin-top: 1.6rem;
     overflow: hidden;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2rem;
+
 }
 
-.page-landing-info .info {
+.page-landing-main .page-landing-section {
     width: 100%;
     height: 30rem;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
+    background-color: #fff;
 }
 
-.page-landing-info .info img {
-    height: 30rem;
+.page-landing-main .page-landing-section .page-landing-slider {
+    height: 100%;
     width: 100%;
-    opacity: 0.4;
+    opacity: 0.8;
+    
+
 }
+ 
+.page-landing-main .page-landing-section .page-landing-slider img {
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+
+}
+
+
+
 
 .page-landing-footer {
     padding: 3.2rem 2rem;
