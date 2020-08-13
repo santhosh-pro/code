@@ -111,6 +111,13 @@ function Landing () {
                             </AliceCarousel>
                         </div>
                     </section>
+
+                    <section className="page-landing-section1">
+                        <div className="page-landing-communic">
+
+                        </div>
+                    </section>
+           
                 </main>
             
 
