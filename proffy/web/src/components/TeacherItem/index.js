@@ -9,7 +9,7 @@ function TeacherItem () {
     return (
         <article className="teacher-item">
             <header>
-                <img src="" />
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" />
                 <div>
                     <strong>Ivano</strong>
                     <span>Quimica</span>

@@ -21,7 +21,7 @@ import Employee from '../../components/TeamItem/Employee';
 function Landing () {
 
     const [ menuVisbile, setMenuVisible ] = useState(false);
-    const [ employees, setEmployess ] = useState([]);
+    const [ employees, setEmployess ] = useState<Employee[]>([]);
 
     const handleClickMenu = () => {
 
@@ -65,24 +65,58 @@ function Landing () {
 
         function newEmployee( name : string, office : string, photo : string, description : string, resume : string )  : Employee {
 
-            var employee : Employee = new Employee();
-
-            employee.descrition = "";
+            var employee : Employee = {
+                name : name,
+                office : office,
+                photo : photo,
+                descrition : description,
+                resume : resume
+            }
 
             return employee;
 
         }
 
-        let emp  = newEmployee( 'Luis Carvalho', 
-                                'Diretor Exectivo', 
-                                'https://randomuser.me/api/portraits/men/1.jpg',
-                                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' )
+        let emps : Array<Employee> = [
+            newEmployee( 
+                'Luis Carvalho', 
+                'Diretor Exectivo', 
+                'https://randomuser.me/api/portraits/men/1.jpg',
+                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
+                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            ),
+            newEmployee( 
+                'Gabriel Dias', 
+                'Desenhista', 
+                'https://randomuser.me/api/portraits/men/2.jpg',
+                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
+                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            ),
+            newEmployee( 
+                'Guilherme Camurça', 
+                'Projetista', 
+                'https://randomuser.me/api/portraits/men/10.jpg',
+                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
+                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            ),
+            newEmployee( 
+                'Aroldo José', 
+                'Engenheiro', 
+                'https://randomuser.me/api/portraits/men/30.jpg',
+                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
+                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            ),
+            newEmployee( 
+                'Jéssica Lima', 
+                'Gerente Administrativa', 
+                'https://randomuser.me/api/portraits/women/30.jpg',
+                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
+                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            )
 
-        console.log( emp );
+        ];
 
-        let emps : Array<Employee>;
-      //  emps.push( emp );
+        setEmployess( emps );
 
         /*
         let emps : Array<EmployeeProps>;
@@ -212,7 +246,7 @@ function Landing () {
                             */}
                             { 
                                 employees &&
-                                    employees.map( ( employee : EmployeeProps ) => {
+                                    employees.map( ( employee : Employee ) => {
                                         return <TeamItem 
                                                     name={employee.name} 
                                                     photo={employee.photo}
@@ -221,16 +255,19 @@ function Landing () {
                                                     resume={employee.resume} 
                                                 />
                                     })
-                            }
+                           }
 
                         </div>
                     </section>
 
-                    <section className="page-landing-section">
-                        <h1>
-                            teste
-                        </h1>
+                    <section className="page-landing-project">
+                        <div id="project">
+                            <div className="team-title" >
+                                <strong>Projetos</strong>
+                            </div>
+                        </div>
                     </section>
+                    
                     <section className="page-landing-section">
                         <h1>
                             teste

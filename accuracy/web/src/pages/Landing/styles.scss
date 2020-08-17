@@ -226,6 +226,30 @@ main .page-landing-team {
 
 }
 
+main .page-landing-project {
+    width: 100%;
+    height: auto;
+    background-color:#fff;
+    padding: 2rem;
+}
+
+#project {
+
+    .project-title {
+
+        strong {
+            font: 600 2.4rem Archivo;
+            color: #191919;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+}
+
+
 
 .page-landing-footer {
     padding: 3.2rem 2rem;
