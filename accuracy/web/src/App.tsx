@@ -1,7 +1,7 @@
 import React from 'react';
 import Landing from './pages/Landing';
 
-import './assets/styles/global.css';
+import './assets/styles/global.scss';
 
 function App() {
     return (

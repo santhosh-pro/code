@@ -1,9 +1,17 @@
 :root {
+
     font-size: 60%;
 
     --color-primary: #191919;
     --color-text-in-primary: #ffffff;
-   
+    --color-title-in-primary: #ffffff;
+    //--color-text-in-primary: #D4C2FF;
+    --color-text-title: #32264D;
+    --color-text-complement: #9C98A6;
+    --color-text-base: #424242;// #6A6180;
+    --color-background-light: #faf8f9; //F0F0F7
+    --color-line-in-white: #E6E6F0;
+
     
 }
 
@@ -36,7 +44,7 @@ textarea {
 }
 
 .container {
-    width: 90vw;
+    width: 100vw;
     max-width: 700px;
 }
 
