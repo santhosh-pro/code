@@ -14,14 +14,22 @@ import teamImg from '../../assets/image/info-menu/team.jpg';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 
-import './styles.scss';
 import TeamItem from '../../components/TeamItem';
+import ProjectItem from '../../components/ProjectItem';
+
 import Employee from '../../components/TeamItem/Employee';
+import Project from '../../components/ProjectItem/Project';
+
+import './styles.scss';
+import Customer from '../../components/CustomerItem/Customer';
+import CustomerItem from '../../components/CustomerItem';
 
 function Landing () {
 
     const [ menuVisbile, setMenuVisible ] = useState(false);
     const [ employees, setEmployess ] = useState<Employee[]>([]);
+    const [ projects, setProjects ] = useState<Project[]>([]);
+    const [ customers, setCustomers ] = useState<Customer[]>([]);
 
     const handleClickMenu = () => {
 
@@ -89,50 +97,86 @@ function Landing () {
                 'Gabriel Dias', 
                 'Desenhista', 
                 'https://randomuser.me/api/portraits/men/2.jpg',
-                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
             ),
             newEmployee( 
                 'Guilherme Camurça', 
                 'Projetista', 
                 'https://randomuser.me/api/portraits/men/10.jpg',
-                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
             ),
             newEmployee( 
                 'Aroldo José', 
                 'Engenheiro', 
                 'https://randomuser.me/api/portraits/men/30.jpg',
-                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
             ),
             newEmployee( 
                 'Jéssica Lima', 
                 'Gerente Administrativa', 
                 'https://randomuser.me/api/portraits/women/30.jpg',
-                'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
             )
 
         ];
 
         setEmployess( emps );
 
-        /*
-        let emps : Array<EmployeeProps>;
-        emps.push( 
+        let projs : Array<Project> = [
+            {
+                name : 'Muralha da China',
+                local : 'China',
+                photo : 'https://portalbr.akamaized.net/brasil/uploads/2017/03/28143936/shutterstock_310861286.jpg',
+                descrition : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                resume : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                year : '2018',
+                km : '5500'
+            },
+            {
+                name : 'Ponte Golden Gate',
+                local : 'São Francisco',
+                photo : 'https://media.gazetadopovo.com.br/haus/2019/03/golden-gate-bridge-dusk-1024x506-8393f9f0.jpg',
+                descrition : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                resume : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                year : '2019',
+                km : '4500'
+            }, 
+            {
+                name : 'Rodovia Castelo Branco',
+                local : 'São Paulo',
+                photo : 'http://www.viaoeste.com.br/resources/media/news/large/20190116_c5212061533343d2a52271549b79bcd3_11-viadutos-da-serra-de-botucatu-sp-280-rodovia-castello-branco-km-205-foto-ccr-spvias-credito-digna-imagem-clovis-ferreira.JPG',
+                descrition : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                resume : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                year : '2020',
+                km : '5550'
+            }
 
-            newEmployee( 'Luis Carvalho', 
-                         'Diretor Exectivo', 
-                         'https://randomuser.me/api/portraits/men/1.jpg',
-                         'Entusiasta das melhores tecnologias para projetos de enhenharia civil', 
-                         'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' )
+        ];
+
+        setProjects( projs );
+
+
+        let custs : Array<Customer> = [
+            {
+                name : "Divided",
+                logo : "https://geekpublicitario.com.br/wp-content/uploads/2020/03/logo-united-coronavirus-geek-publicitario-1024x426.jpg"
+            },
+            {
+                name : "Gonçalves Rodrigues",
+                logo : "http://logotiposdeempresas.com.br/wp-content/uploads/2015/03/logotipo_engenharia.png"
+            },
+            {
+                name : "CGR",
+                logo : "https://static.wixstatic.com/media/0aa8f1_a648c4109df342878672a0bd991be973~mv2.png/v1/fill/w_149,h_76,al_c,usm_0.66_1.00_0.01/Logo%20horizontal-03.png"
+            }
+        ];
+
+        setCustomers( custs );
         
-            
-        );
-
-        setEmployess( emps );*/
-
     },[]);
     
     return (
@@ -228,22 +272,6 @@ function Landing () {
                             <div className="team-title" >
                                 <strong>Nossa Equipe</strong>
                             </div>
-                            {/*
-                            <TeamItem 
-                                name={'Luis Carlos'} 
-                                photo={'https://randomuser.me/api/portraits/men/1.jpg'}
-                                office={'Diretor Executivo'} 
-                                descrition={'Entusiasta das melhores tecnologias para projetos de enhenharia civil'}
-                                resume={'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'} 
-                            />
-                            <TeamItem 
-                                name={'Guilerme Camurça'} 
-                                photo={'https://randomuser.me/api/portraits/men/7.jpg'}
-                                office={'Diretor Executivo'} 
-                                descrition={'Entusiasta das melhores tecnologias para projetos de enhenharia civil'}
-                                resume={'Com 30 anos de experiência ....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'} 
-                            />
-                            */}
                             { 
                                 employees &&
                                     employees.map( ( employee : Employee ) => {
@@ -262,27 +290,37 @@ function Landing () {
 
                     <section className="page-landing-project">
                         <div id="project">
-                            <div className="team-title" >
+                            <div className="project-title" >
                                 <strong>Projetos</strong>
                             </div>
+                            { 
+                                projects &&
+                                    projects.map( ( project : Project ) => {
+                                        return <ProjectItem 
+                                                    name={project.name} 
+                                                    photo={project.photo}
+                                                    local={project.local} 
+                                                    descrition={project.descrition}
+                                                    resume={project.resume} 
+                                                    year={project.year}
+                                                    km={project.km}
+                                                />
+                                    })
+                           }
+                        </div>
+                    </section>
+
+                    <section className="page-landing-customer">
+                        <div id="customer">
+                            <div className="customer-title" >
+                                <strong>Clientes</strong>
+                            </div>
+                           
+                            <CustomerItem />
+                           
                         </div>
                     </section>
                     
-                    <section className="page-landing-section">
-                        <h1>
-                            teste
-                        </h1>
-                    </section>
-                    <section className="page-landing-section">
-                        <h1>
-                            teste
-                        </h1>
-                    </section>
-                    <section className="page-landing-section">
-                        <h1>
-                            teste
-                        </h1>
-                    </section>
 
                 </main>
             
