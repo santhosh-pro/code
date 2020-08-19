@@ -196,7 +196,7 @@ function Landing () {
                 {/*<label>&#9776;</label>*/ }
                 { menuVisbile &&
                    
-                        <nav id="menu-container" className="navbar-menu">
+                        <nav id="menu-container" className="container">
                             <ul>
                                 <li>
                                     <a href="#">Home</a>

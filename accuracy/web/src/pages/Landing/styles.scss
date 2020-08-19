@@ -1,5 +1,6 @@
 #page-landing {
-    width: 100vw;
+
+    width: 100%;
     height: 100vh;
 
     display: flex;
@@ -8,9 +9,11 @@
 
     color: var(--color-text-in-primary);
     background: var(--color-primary);
+
 }
 
 .page-landing-header {
+
     display: flex;  
     align-items: center; 
     justify-content: center;
@@ -21,6 +24,7 @@
     padding-right: 1rem;
 
     .top-bar-container {
+
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -44,6 +48,7 @@
     }
 
     .logo-container {
+
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -77,6 +82,7 @@
 
 
 #menu-container {
+
     height: 0;
     margin-top: 1.6rem;
     transition: height 0.5s !important;
@@ -94,12 +100,15 @@
     padding-right: 1rem;
 
     ul {
+
         list-style: none;
         position: relative;
         width: 100%;
+
     }
 
     ul li {
+
         width: 100%;
         height: 0.9rem;
         transition: height 0.5s !important;
@@ -110,13 +119,17 @@
         justify-content: center;
 
         border-top: solid 1px #424242;
+
     }
 
     ul li:hover {
+
         background-color: #222;
+
     }
 
     a {
+
         text-decoration: none;
         text-align: left;
         background-color:transparent;
@@ -124,23 +137,29 @@
         transition: 0.2s;
         font: 200 1.8rem;
         width: 100%;
+
     }
 
     a:hover {
+
         color: var(--color-text-in-primary);
+
     }
 }
 
 @keyframes fadein {
+
     from {
         opacity:0;
     }
     to {
         opacity:1;
     }
+
 }
 
 main {
+
     width: 100%;
     height: 100%;
     border-radius: 0.4rem;
@@ -156,60 +175,69 @@ main {
 }
 
 main .page-landing-section {
+
     width: 100%;
-    height: 50rem;
+    height: 100vh;//50rem;
     display: flex;
     align-items: flex-start;
     justify-content: center;
 
     margin-top: 2rem;
+
 }
 
-main .page-landing-section .page-landing-spotlight {
-    height: 100%;
-    width: 100%;
-    opacity: 0.8;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+main .page-landing-section { 
+    
+    .page-landing-spotlight {
 
-/*
-main .page-landing-section .page-landing-spotlight div {
-    background-image: url("../../assets/image/info-menu/project.jpg");
-    background-position: top;
-    background-size: cover;
-    background-clip: content-box;
-    //background-color: red;
-}
- */
-main .page-landing-section .page-landing-spotlight img {
-    width:100%;
-    height: 100%;
-    object-fit: contain;
-    //border-radius: 1rem;
-}
+        height: 100%;
+        width: 100%;
+        opacity: 0.8;
+        padding-left: 2.8rem;
+        padding-right: 2.8rem;
 
-main .page-landing-section .page-landing-spotlight span {
-    width:100%;
-    height: 100%;
-    font: 400 1.6rem 'KoHo';
-    font-style: italic;
-    color: var(--color-text-in-primary);
-    //border-radius: 1rem;
-
-    a {
-        margin-left: 0.5rem;
-        color: #a7c1e1;
-        cursor: pointer;
-        text-decoration: none;
     }
+
+    img {
+
+        width:100%;
+        height: 100%;
+        object-fit: cover;
+        //border-radius: 1rem;
+
+    }
+
+    span {
+
+        width:100%;
+        height: 100%;
+        font: 400 1.6rem 'KoHo';
+        font-style: italic;
+        color: var(--color-text-in-primary);
+        //border-radius: 1rem;
+    
+        a {
+            margin-left: 0.5rem;
+            color: #a7c1e1;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    
+    }
+
 }
+
+
+
+
 
 main .page-landing-team {
+
     width: 100%;
     height: auto;
     background-color: var(--color-background-white);
     padding: 2rem;
+
 }
 
 #team {
@@ -229,10 +257,12 @@ main .page-landing-team {
 }
 
 main .page-landing-project {
+
     width: 100%;
     height: auto;
     background-color:var(--color-background-light);
     padding: 2rem;
+
 }
 
 #project {
@@ -252,10 +282,12 @@ main .page-landing-project {
 }
 
 main .page-landing-customer {
+
     width: 100%;
     height: auto;
     background-color:var(--color-background-white );
     padding: 2rem;
+
 }
 
 #customer {
@@ -277,27 +309,31 @@ main .page-landing-customer {
 
 
 .page-landing-footer {
+
     padding: 3.2rem 2rem;
     margin-top: 3.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .social-network-content {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 35%;
+
+        img {
+
+            height: 2rem;
+            width: 2rem;
+            cursor: pointer;
+    
+        }
+
+    }
+
 }
-
-.page-landing-footer .social-network-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.page-landing-footer .social-network-content img {
-    height: 2.5rem;
-    width: 2.5rem;
-    padding-left: 0.5rem;
-    cursor: pointer;
-}
-
-
 
 /*
 @media( min-with: 700px) {
