@@ -1,0 +1,44 @@
+#root {
+    font-size: 60%;
+    --color-background:#f8faf9;
+    --color-text-base:#6a6180;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100vh;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+body,
+input, 
+button,
+text {
+    font: 500 1.6 Arial;
+    color: var(--color-text-base);
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+@media(min-width: 700px) {
+    :root {
+        font: 62.5%;
+    }
+}

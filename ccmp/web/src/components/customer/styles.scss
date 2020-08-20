@@ -1,0 +1,45 @@
+#page-customer {
+
+    width: 100vw;
+    height: 100vh;
+
+    #page-customer-content {
+
+        .page-header {
+
+            width: 100%;
+            height: 3.5rem;
+            background-color: #224bb9;
+
+            display: flex;
+            align-items: center;
+            justify-items: center;
+
+            padding: 0.5rem;
+
+            span {
+
+                font : 500 20rem var(--color-text-base);
+                font-size: 1.2rem;
+
+            }
+
+        }
+
+        .input-block {
+            display: block;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+
+            label {
+                font-weight : 600;
+                color : var(--color-text-base);
+            }
+        }
+
+    }
+
+}
