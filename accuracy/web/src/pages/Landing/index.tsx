@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import logoImg from '../../assets/image/logoImg.png';
-import facebookIcon from '../../assets/image/icon/facebook.svg';
-import instagramIcon from '../../assets/image/icon/instagram.svg';
-import linkedinIcon from '../../assets/image/icon/linkedin.svg';
 import menuIcon from '../../assets/image/icon/menu2.svg';
 
 import projectImg from '../../assets/image/info-menu/project.jpg';
@@ -21,52 +18,30 @@ import Employee from '../../components/TeamItem/Employee';
 import Project from '../../components/ProjectItem/Project';
 
 import './styles.scss';
-import Customer from '../../components/CustomerItem/Customer';
 import CustomerItem from '../../components/CustomerItem';
+import Menu from '../../components/menu';
+import SocialNet from '../../components/SocialNet'; 
 
 function Landing () {
 
     const [ menuVisbile, setMenuVisible ] = useState(false);
     const [ employees, setEmployess ] = useState<Employee[]>([]);
     const [ projects, setProjects ] = useState<Project[]>([]);
-    const [ customers, setCustomers ] = useState<Customer[]>([]);
+
+    const homeRef = useRef(null);
+    const whoAreRef = useRef(null);
+    const teamRef = useRef(null);
+    const projectRef = useRef(null);
+    const portfolioRef = useRef(null);
+    const successCaseteamRef = useRef(null);
+    const customerRef = useRef(null);
+    const contactRef = useRef(null);
 
     const handleClickMenu = () => {
 
         setMenuVisible(!menuVisbile)
 
     }
-
-    useEffect ( () => {
-
-        if ( menuVisbile ) {
-
-            let el = document.getElementById( 'menu-container') as HTMLDivElement;
-            el.style.height = "100vh";
-
-            let page = document.getElementById( 'page-landing') as HTMLElement;
-            page.style.overflow = "none";
-
-            let li = document.getElementsByTagName( 'li' ) as HTMLCollectionOf<HTMLLIElement>;
-            li[0].style.height = "3.5rem";
-            li[1].style.height = "3.5rem";
-            li[2].style.height = "3.5rem";
-            li[3].style.height = "3.5rem";
-            li[4].style.height = "3.5rem";
-            li[5].style.height = "3.5rem";
-            li[6].style.height = "3.5rem";
-            li[7].style.height = "3.5rem";
-
-        } else {
-
-            let el = document.getElementById( 'menu-container') as HTMLElement;
-            
-            if ( el ) {
-                el.style.height = "0";
-            }
-        }
-
-    }, [menuVisbile]);
 
 
     useEffect( () => {
@@ -158,29 +133,11 @@ function Landing () {
         ];
 
         setProjects( projs );
-
-
-        let custs : Array<Customer> = [
-            {
-                name : "Divided",
-                logo : "https://geekpublicitario.com.br/wp-content/uploads/2020/03/logo-united-coronavirus-geek-publicitario-1024x426.jpg"
-            },
-            {
-                name : "Gonçalves Rodrigues",
-                logo : "http://logotiposdeempresas.com.br/wp-content/uploads/2015/03/logotipo_engenharia.png"
-            },
-            {
-                name : "CGR",
-                logo : "https://static.wixstatic.com/media/0aa8f1_a648c4109df342878672a0bd991be973~mv2.png/v1/fill/w_149,h_76,al_c,usm_0.66_1.00_0.01/Logo%20horizontal-03.png"
-            }
-        ];
-
-        setCustomers( custs );
         
     },[]);
     
     return (
-       <div id="page-landing">
+       <div ref={homeRef} id="page-landing">
            <div id="page-landing-content" className="container">
                 <header className="page-landing-header" >
                     <div className="top-bar-container">
@@ -194,39 +151,19 @@ function Landing () {
                     </div>
                 </header>
                 {/*<label>&#9776;</label>*/ }
-                { menuVisbile &&
+                
+                <Menu 
+                    visible={menuVisbile} 
+                    homeRef={homeRef}
+                    whoAreRef={whoAreRef}
+                    teamRef={teamRef}
+                    projectRef={projectRef}
+                    portfolioRef={portfolioRef}
+                    successCaseRef={successCaseteamRef}
+                    customerRef={customerRef}
+                    contactRef={contactRef}
+                />     
                    
-                        <nav id="menu-container" className="container">
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">Quem Somos</a>
-                                </li>
-                                <li>
-                                    <a href="#">Equipe</a>
-                                </li>  
-                                <li>
-                                    <a href="#">Projetos</a>
-                                </li>                                                                     
-                                <li>
-                                    <a href="#">Portifólio</a>
-                                </li>      
-                                <li>
-                                    <a href="#">Casos de Sucesso</a>
-                                </li>               
-                                <li>
-                                    <a href="#">Clientes</a>
-                                </li>                            
-                                <li>
-                                    <a href="#">Contato</a>
-                                </li>
-                            </ul>                        
-                        </nav> 
-                   
-                }
-
                 <main>
                     <section className="page-landing-section">
                         
@@ -234,31 +171,31 @@ function Landing () {
                             <AliceCarousel autoPlay autoPlayInterval={3000} buttonsDisabled={true}>
                                
                                 <div>            
-                                    <img src={whoWeAreImg} className="sliderimg" />  
+                                    <img src={whoWeAreImg} className="sliderimg" alt="Quem somos" />  
                                     <span>
                                         Quem somos: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        <a href="" >Saiba mais...</a>
+                                        <a href="/" >Saiba mais...</a>
                                     </span>  
                                 </div>   
                                 <div>
-                                    <img src={teamImg} className="sliderimg" /> 
+                                    <img src={teamImg} className="sliderimg" alt="Equipe" /> 
                                     <span>
                                         Equipe: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        <a href="" >Conheça nossa equipe...</a>
+                                        <a href="/" >Conheça nossa equipe...</a>
                                     </span>   
                                 </div> 
                                 <div>
-                                    <img src={projectImg} className="sliderimg" />   
+                                    <img src={projectImg} className="sliderimg" alt="Projetos" />   
                                     <span>
                                         Projetos: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        <a href="" >Saiba mais...</a>
+                                        <a href="/" >Saiba mais...</a>
                                     </span>         
                                 </div> 
                                 <div>
-                                    <img src={successCaseImg} className="sliderimg" /> 
+                                    <img src={successCaseImg} className="sliderimg" alt="Casos de Sucesso" /> 
                                     <span>
                                         Casos de sucesso: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        <a href="" >Saiba mais...</a>
+                                        <a href="/" >Saiba mais...</a>
                                     </span>   
                                 </div>
                                 
@@ -266,9 +203,9 @@ function Landing () {
                         </div> 
 
                     </section>
-
-                    <section className="page-landing-team">
-                        <div id="team">
+              
+                    <section ref={teamRef} className="page-landing-team">
+                        <div  id="team">
                             <div className="team-title" >
                                 <strong>Nossa Equipe</strong>
                             </div>
@@ -288,7 +225,7 @@ function Landing () {
                         </div>
                     </section>
 
-                    <section className="page-landing-project">
+                    <section ref={projectRef} className="page-landing-project">
                         <div id="project">
                             <div className="project-title" >
                                 <strong>Projetos</strong>
@@ -310,7 +247,7 @@ function Landing () {
                         </div>
                     </section>
 
-                    <section className="page-landing-customer">
+                    <section ref={customerRef} className="page-landing-customer">
                         <div id="customer">
                             <div className="customer-title" >
                                 <strong>Clientes</strong>
@@ -321,15 +258,10 @@ function Landing () {
                         </div>
                     </section>
                     
-
                 </main>
             
                 <footer className="page-landing-footer">
-                    <div className="social-network-content">
-                        <img src={facebookIcon} alt="Facebook" />
-                        <img src={instagramIcon} alt="Instagran" />
-                        <img src={linkedinIcon} alt="Linkedin" />
-                    </div>
+                   <SocialNet/>
                 </footer>
 
            </div>

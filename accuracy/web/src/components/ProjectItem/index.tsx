@@ -19,7 +19,7 @@ const ProjectItem: React.FC<Project> = ( props ) => {
 
             <p>
                 {props.resume} 
-                <a href="" >Saiba mais...</a>
+                <a href="/" >Saiba mais...</a>
             </p>
             
             {/*

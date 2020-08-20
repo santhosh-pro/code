@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Customer from './Customer';
+import React from 'react';
 
 import './styles.scss';
 

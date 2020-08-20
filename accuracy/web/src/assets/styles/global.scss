@@ -11,15 +11,19 @@
     --color-text-base: #424242;// #6A6180;
     --color-background-light: #faf8f9; //F0F0F7
     --color-line-in-white: #E6E6F0;
+    --color-line-in-primary: #424242;
     --color-background-white: #ffffff;
-
-    
+    --color-over-in-primary: #222;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 html, body, #root {
@@ -32,7 +36,7 @@ body {
 
 #root {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
 }
 
