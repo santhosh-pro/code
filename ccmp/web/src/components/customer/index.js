@@ -63,8 +63,8 @@ class Customer extends Component {
                         <input 
                             type="text" 
                             className="input-customer-name"
-                             onChange={(e)=>this.hangleChange(e)} 
-                             value={this.state.name} 
+                            onChange={(e)=>this.hangleChange(e)} 
+                            value={this.state.name} 
                         />
                     </div>
 
