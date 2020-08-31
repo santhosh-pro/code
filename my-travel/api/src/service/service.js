@@ -1,18 +1,25 @@
+const DataSet = require( '../db/dataset' );
+const context = require( '../server/server-context' );
+
 class Service {
 
-    constructor() {
+    constructor( schemaName ) {
+
+        this.dataSet = new DataSet( schemaName );
+        this.context = context;
 
     }
 
-    async create () {
+    async create ( data ) {
 
-        console.log( 'create' );
+        await this.dataSet.create( data );
 
     }
 
     async find () {
 
-        console.log( 'find' );
+        const collection = await this.dataSet.find(); 
+        return collection;
 
     }
 
