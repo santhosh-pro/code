@@ -18,6 +18,7 @@ function Browser( props ) {
 
 	useEffect( () => {
 
+
 		const fetchData = async () => {
 
             const response = await get( urn );
@@ -34,7 +35,7 @@ function Browser( props ) {
 
         fetchData ();
 
-    }, [urn] );
+    }, [ urn ] );
 
 
     const setupActions = useCallback( () => {
@@ -119,21 +120,18 @@ function Browser( props ) {
 
     }
 
-    const createBtnAction = ( handler, className, iconName, param ) => {
+    const handleClickRefresh = async ( handler, className, iconName, param ) => {
 
-        if ( handler )
-            return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
-        else
-            return undefined;
-    
-    }
+        const response = await get( urn );
+       
+			let data = [];
 
-    const handleClickRefresh = ( handler, className, iconName, param ) => {
+			if ( response ) {
+				data = response.data;
+			}
 
-        if ( handler )
-            return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
-        else
-            return undefined;
+			setData( data );
+
     
     }
 
@@ -143,7 +141,7 @@ function Browser( props ) {
         <div className="browser" >
             <div className="common-header">
                 <label>
-                    Enquete
+                    {props.title}
                 </label>
             </div>
             <div className="toolbar-container">
@@ -171,3 +169,13 @@ function Browser( props ) {
 }
 
 export default withRouter( Browser );
+
+
+const createBtnAction = ( handler, className, iconName, param ) => {
+
+    if ( handler )
+        return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
+    else
+        return undefined;
+
+}

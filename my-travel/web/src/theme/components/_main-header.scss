@@ -38,16 +38,17 @@
         height: 60px;
         
         strong {
-            font-size: 1.7rem;
+            font-size: 1.4rem;
             font-family: poppins;
             color: var(--color-title-in-primary);
             font-weight: 550;
             width: 100%;
             text-align: center;
             margin-left: 0.9rem;
-            display: block;
+            //display: block;
             align-items: center;
             justify-content: center;
+            //background-color: #1d237f;
         }
     
     };

@@ -18,7 +18,7 @@ class Service {
 
     async find () {
 
-        const collection = await this.dataSet.find(); 
+        const collection = await this.dataSet.find();
         return collection;
 
     }

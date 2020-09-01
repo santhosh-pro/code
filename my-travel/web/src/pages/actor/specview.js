@@ -3,9 +3,10 @@ import { SpecDataView } from '../../infra/specview/SpecDataView';
 
 const SVActorBrowser = () => {
 
-    let svBrowser = new SpecDataView( 'actor', '', SpecViewType.OBJECT );  
-    svBrowser.addString( 'id', '' );  
-    svBrowser.addString( 'person.fullName', '' );
+    let svBrowser = new SpecDataView( 'travelRoute', '', SpecViewType.OBJECT );  
+    svBrowser.addString( 'origin', '' );  
+    svBrowser.addString( 'destination', '' );
+    svBrowser.addString( 'value', '' );
     
     return svBrowser;
 

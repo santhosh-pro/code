@@ -1,6 +1,7 @@
 const readline = require( 'readline' );
 const modelProvider = require( '../infra/model-provider' );
 const fs = require( 'fs' );
+const { rejects } = require('assert');
 
 class CVSBinding {
     
@@ -61,36 +62,52 @@ class CVSBinding {
         const count = columnsHeader.length;
         let collection = [];
 
-        /*
+        /* Processamento mais lento
         const rl = readline.createInterface({
             input: this._readable,
             output: process.stdout
         });
-          
+
+        const promisse = new Promise( ( resolve, reject ) => {
+
+            try {
+
+                rl.on( 'line',  ( line ) => {
+
+                    if ( line ) {
         
-        rl.on( 'line',  ( line ) => {
+                        const row = line.split( ',' );
+        
+                        let data = {};
+        
+                        for ( let i = 0; i <= count -1; i++ ) {
+        
+                            const propName = columnsHeader[ i ];
+                            data[ propName ] = row[ i ]
+        
+                        }
+        
+                        collection.push( data );
+                        resolve( collection );
+        
+                    }
+        
+                });
 
-            if ( line ) {
+                rl.close;
 
-                const row = line.split( ',' );
+            } catch ( err ) {
 
-                let data = {};
-
-                for ( let i = 0; i <= count -1; i++ ) {
-
-                    const propName = colHeader[ i ];
-                    data[ propName ] = row[ i ]
-
-                }
-
-                addData( data );
+                reject( err );
 
             }
 
         });
 
-        rl.close;*/
+        return promisse;
+        //*/
 
+        //*
         const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
         const lines = data.split( '\n' );
 
@@ -115,6 +132,7 @@ class CVSBinding {
         }
 
         return collection;
+        //*/
 
     }
 

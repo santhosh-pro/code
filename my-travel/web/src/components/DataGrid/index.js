@@ -139,7 +139,7 @@ export default function DataGrid ( props ) {
     return (
 
         <div className="data-grid" >
-            <table className="table-data-grid" nMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+            <table className="table-data-grid" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
                 <thead>
                     {   showTitle &&
                         <tr className="header-data-grid">
@@ -152,7 +152,7 @@ export default function DataGrid ( props ) {
                 { data &&
                     data.map( ( item, index ) => (
                         
-                        <tr key={ item[ keyProp ] }
+                        <tr key={ index }
                             className="row-data-data-grid"
                             onClick={ ( e )=>handleRowClick( e, item, index )}
                         > 

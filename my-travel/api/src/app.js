@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require( 'cors' );
 const consign = require('consign');
 const dbConnectionProviderMiddleware = require('../src/middleware/connection-provider.middleware');
 const context = require( '../src/server/server-context' );
 
 context.createNamespace();
 const app = express();
+app.use( cors() );
 app.use( context.initContext() );
 
 app.use( express.json() );

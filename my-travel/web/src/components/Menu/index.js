@@ -14,13 +14,10 @@ function Menu( props ) {
         <div className="main-menu" >
             <div className="main-menu-container" > 
                 <span onClick={()=>pollHandleClick()} >
-                    Enquete
+                    Rotas
                 </span>
                 <span>
-                    Votação
-                </span>
-                <span>
-                    Estatística
+                    Melhor viagem
                 </span>
             </div>
         </div>
