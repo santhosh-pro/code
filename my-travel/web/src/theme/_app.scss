@@ -1,0 +1,82 @@
+:root {
+    font-size: 60%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Poppins;
+    -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+html, body, #root{
+    height: 100vh;
+}
+
+body {
+    background-color: var(--color-background);
+    overflow: overlay;
+}
+
+img {
+    user-select: none;
+}
+
+body,
+input,
+button,
+textarea {
+    font : 500 1.25rem poppins;
+}
+
+.container {
+    width: 90vw;
+    max-width: 700px;
+    padding: 0.8rem;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    margin-top: 100px;
+} 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: transparent!important;
+    padding-right: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba($color: #424242, $alpha: 0.3);
+    //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba($color: #424242, $alpha: 0.1);
+}

@@ -25,7 +25,7 @@ function getDbConnection( dbConfig ) {
   
     process.on( 'SIGINT', () => {
 
-        mongoose.connection.close(() => {
+        conn.close(() => {
             console.log('CSVDB default connection disconnected.');
             process.exit(0);
         });

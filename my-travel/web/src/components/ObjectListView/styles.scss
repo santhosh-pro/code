@@ -1,0 +1,251 @@
+.layout-object-grid-li {
+    display: block;
+    width: 100%;  
+    background: #ffffff;
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-right: 8px ;
+    padding: 15px; 
+}
+
+.layout-object-grid-li .group-li {
+    display: inline-block;
+    /*border-style: solid;
+    border-width: 1px;
+    border-color: #ddd !important;*/
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-bottom: 12px;
+    margin-top: 0px;
+    //border-radius: 6px;
+    
+    border-radius: 8px;
+    background-color:#ffffff;    
+    box-shadow:#f0c3bfad 0.0em 0.0em 0.1em; //f0c3bfad
+}
+
+#base-li{
+    position: relative;    
+    height:100%;
+    width: 20%; 
+    left: 0px;    
+    float: left;   
+    background: #ffffff;
+    padding-right: 18px;
+    border-right: solid 1px #ddd;
+    margin-top: 20px;
+}
+
+
+.layout-object-grid-li .layout-header_object-grid-li {
+    width: 100%;    
+    height: 40px;
+    background: #ffffff;
+    padding-left: 8px;
+   // padding-top:7.5px;
+}
+
+.layout-object-grid-li .layout-header_object-grid-li 
+.layout-header-title-object-grid-li {    
+    font-family: sans-serif, Arial, Helvetica;
+    font-weight: normal;    
+    font-size: 17.6px;
+    color:#303030;
+    float: left;        
+    height: 100%; 
+    text-align: center;
+} 
+
+.layout-object-grid-li 
+.layout-header_object-grid-li hr {
+    background-color: #fff;
+    position: relative;
+    background-image: linear-gradient(169.9deg, #d7d8da, transparent);
+    border: 0;
+    height: 1.4px;
+    left: 15px;
+    top:11px;
+}
+
+#content-grid-li {   
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 90%;
+    background: #f4f6f7; //* Old browsers 
+    background: -moz-radial-gradient(center, ellipse cover,  #f4f6f7 0%, #f4f6f7 99%); //* FF3.6-15 
+    background: -webkit-radial-gradient(center, ellipse cover,  #f4f6f7 0%,#f4f6f7 99%); //* Chrome10-25,Safari5.1-6 
+    background: radial-gradient(ellipse at center,  #f4f6f7 0%,#f4f6f7 99%); //* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', endColorstr='#f4f6f7',GradientType=1 ); //* IE6-9 fallback on horizontal gradient 
+   
+}
+
+#group-grid-li {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    background: inherit;
+}
+
+#common-grid-li {
+    font-family: "Helvetica Neue", Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+   // margin-top: 20px;
+    margin-left: 8px;
+}
+
+#col-grid-title-li { 
+    color:#495a70e6!important;//#5b708be6
+    height: 25px;     
+    font-family: inherit;
+    font-size: 13;
+    font-weight: 400;
+    vertical-align: middle;
+    text-shadow: #f0c3bfad 0.0em 0.0em 0.1em;  
+    margin-right: 8px;
+
+    //height: 10px;
+}
+
+#col-grid-title-li,
+#col-grid-data-li {
+    text-align: left;
+    padding-left: 3px;
+    font-weight: 600;
+} 
+
+#col-grid-data-li {
+    height: 30px;
+    color: #222222;
+    text-shadow: #f0c3bfad 0.0em 0.0em 0.1em;  
+}
+
+#columnSelector-li {
+    float: right;
+    width: 1px;
+    height: 15px;
+    cursor: col-resize;
+    background-color: #ddd;
+    user-select: none;
+}
+
+#row-grid-data-li {
+    border:none;//border-bottom: solid 1px #f0f0f0;    
+//    background: yellow;
+}
+
+#row-grid-data-li:nth-child(even) {
+    background-color:#fff9f9;
+}
+
+#row-grid-data-li:nth-child(odd) {
+    background-color:#ffffff;
+}
+
+#row-grid-data-li:hover {
+    background-color:yellow;// #f5f5f5;    
+    //border-top: solid 1px #f1f1f1;
+    //border-bottom: solid 1px #f1f1f1;
+}
+
+
+#row-grid-title-li {
+    background:#ffffff; // Old browsers #674e9e
+    background: -moz-linear-gradient(top,  #ffffff 0%, #fff9f9 45%, #fff9f9 60%, #ffffff 100%); // FF3.6-15 
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#fff9f9 45%,#fff9f9 60%,#ffffff 100%); // Chrome10-25,Safari5.1-6
+    background: linear-gradient(to bottom,  #ffffff 0%,#fff9f9 45%,#fff9f9 60%,#ffffff 100%); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#f9f9f9',GradientType=0 ); // IE6-9 
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    //height:5px ;
+}
+
+
+.button-bar-li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    background:#ffffff;
+    font-size: 15px;
+    vertical-align: middle;
+    height: 30px;
+    width: 100%;
+    //border-bottom: solid;
+    //border-width: 1px;
+    //border-color: #ddd;
+
+    box-shadow:#f0c3bfad 0.0em 0.0em 0.1em; //f0c3bfad
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    background:#ffffff; // Old browsers #674e9e
+    background: -moz-linear-gradient(top,  #ffffff 0%, #fff9f9 100%, #fff9f9 60%, #ffffff 100%); // FF3.6-15 
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#fff9f9 100%,#fff9f9 60%,#ffffff 100%); // Chrome10-25,Safari5.1-6
+    background: linear-gradient(to bottom,  #ffffff 0%,#fff9f9 100%,#fff9f9 60%,#ffffff 100%); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#f9f9f9',GradientType=0 ); // IE6-9 //
+    //border-top: 1px solid #f1f1f1;    
+
+   // background-color: red;
+}
+
+
+
+#col-grid-title-btn-li { 
+    color:#495a70e6!important;//#5b708be6
+    height: 25px;     
+    font-family: inherit;
+    font-size: 14;
+    font-weight: 400;
+    vertical-align: middle;
+   // text-shadow: #f0c3bfad 0.0em 0.0em 0.1em;  
+}
+
+#col-grid-title-btn-li,
+#col-grid-btn-li {
+    text-align: center;
+    width: 35px;
+}
+
+#col-grid-btn-li {
+    height: 30px;
+}
+
+#view-object-li {    
+    padding-left: 255px;    
+    padding-top: 0px;
+}
+
+.button-bar-li button {
+    background: transparent;// :#ffffff;
+    border-color: #fdfdfd;
+    border-radius: 30px;
+    //border-style: solid;
+    border-width: 0;
+    box-shadow: 0;
+    color:#000000;
+    opacity: 1;
+    transition: background-color 15ms linear; 
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.button-bar-li button img {
+    //  opacity: 0.75;
+        -moz-transform: scale(0.87);
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);   
+    }
+
+.button-bar-li button img:hover {
+    -moz-transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    //  opacity: 0.99;
+    //   filter: alpha(opacity=100);    
+}

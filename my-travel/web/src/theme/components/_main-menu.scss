@@ -1,0 +1,33 @@
+.main-menu {
+
+    position: fixed;
+    float: left;
+    background:#fff;
+    width: 100vw;
+    left: 0;
+    top: 60px;
+    padding-right: 0px;
+    padding-left: 0px;
+
+    background-color:var(--color-menu-background);
+
+    .main-menu-container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            padding: 8px;
+            color: #424242;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        span:hover{
+            color: #838383;
+        }
+
+    }
+
+}

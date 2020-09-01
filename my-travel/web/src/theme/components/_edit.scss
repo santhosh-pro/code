@@ -1,0 +1,26 @@
+.edit-object {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    background-color: var(--color-background);
+    border-radius: 0.8rem;
+    border: solid 1px var(--color-line-in-white);  
+}
+
+.common-header {
+    width: 100%;
+    height: 3.5rem;
+    background-color: var(--color-header-backgound);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    label {
+        color: var( --color-text-title);
+        font: 700 1.6rem Poppins;
+    }
+    border-top-right-radius: 0.8rem;
+    border-top-left-radius: 0.8rem;
+}

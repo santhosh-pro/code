@@ -17,6 +17,12 @@ class CVSBinding {
 
     } 
 
+    async close() {
+
+        await fs.closeSync();
+
+    }
+
     async create( schemaName, data ) {
 
         if ( data ) {
@@ -87,7 +93,6 @@ class CVSBinding {
 
         const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
         const lines = data.split( '\n' );
-
 
         for ( let i = 0; i <= lines.length -1; i++ ) {
 

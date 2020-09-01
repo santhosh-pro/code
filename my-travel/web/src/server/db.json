@@ -1,0 +1,555 @@
+{
+
+    "actor": [
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "Rua Monsenhor Januário Sangirardi",
+                    "number": "80",
+                    "complement": "Nenhum",
+                    "district": "Freguesia do Ó",
+                    "postalCode": "02962100",
+                    "city": "São Paulo",
+                    "state": "SP",
+                    "deactivatedAt": null,
+                    "createdAt": "2019-08-14T18:02:14.219Z",
+                    "updatedAt": null
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "",
+                    "phoneMobile": ""
+                },
+                "fullName": "JMC Transportes LTDA",
+                "nickName": "JMC",
+                "federalDoc": "25206854000125",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "email": "ivano.sistemas@gmail.com",
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "Rua Professor Silva de Azevedo",
+                        "number": "122",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "02512510",
+                        "city": "São Paulo",
+                        "state": "SP",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    },
+                    {
+                        "default": false,
+                        "isActive": true,
+                        "id": "2",
+                        "street": "Rua Felipe Gouveia da Silva",
+                        "number": "135",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "025125100",
+                        "city": "São Paulo",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "updatedAt": null,
+                "createdAt": "2020-02-23T16:43:41.506Z"
+            },
+            "actorType": [
+                "company",
+                "customer"
+            ],
+            "isActive": true,
+            "id": "1",
+            "homePage": "www.jmc.com",
+            "documents": [
+                {
+                    "id": "1",
+                    "title": "Contrato de Locação",
+                    "type": "Doc",
+                    "issuedDate": "2019-08-01T18:02:14.219Z",
+                    "expirateDate": "2019-12-31T18:02:14.219Z",
+                    "attachedFilePath": "teste"
+                }
+            ],
+            "vehicles": [],
+            "createdAt": "2019-09-04T23:02:14.219Z",
+            "updatedAt": "2020-08-20T05:10:16.000Z",
+            "deactivatedAt": null,
+            "__v": 0,
+            "code": 1
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "Rua Monsenhor Januário Sangirardi",
+                    "number": "42",
+                    "complement": "Nenhum",
+                    "district": "Freguesia do Ó",
+                    "postalCode": "02962100",
+                    "city": "São Paulo",
+                    "state": "SP",
+                    "deactivatedAt": null,
+                    "createdAt": "2019-08-14T18:02:14.219Z",
+                    "updatedAt": null
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "",
+                    "phoneMobile": ""
+                },
+                "isActive": true,
+                "fullName": "Colinos",
+                "nickName": "JMC",
+                "federalDoc": "25206854000125",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "email": "ivano.sistemas@gmail.com",
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "Rua Professor Silva de Azevedo",
+                        "number": "122",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "025125100",
+                        "city": "São Paulo",
+                        "state": "SP",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    },
+                    {
+                        "default": false,
+                        "isActive": true,
+                        "id": "2",
+                        "street": "Rua Felipe Gouveia da Silva",
+                        "number": "135",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "025125100",
+                        "city": "São Paulo",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "updatedAt": null,
+                "createdAt": "2020-02-23T16:45:38.693Z"
+            },
+            "actorType": [
+                "company",
+                "supplier"
+            ],
+            "isActive": true,
+            "id": "2",
+            "homePage": "www.jmc.com.br",
+            "documents": [
+                {
+                    "id": "1",
+                    "title": "Contrato de Locação",
+                    "type": "Doc",
+                    "issuedDate": "2019-08-01T18:02:14.219Z",
+                    "expirateDate": "2019-12-31T18:02:14.219Z",
+                    "attachedFilePath": "teste"
+                }
+            ],
+            "vehicles": [],
+            "createdAt": "2020-01-09T02:57:35.000Z",
+            "updatedAt": "2020-03-14T14:55:22.000Z",
+            "deactivatedAt": null,
+            "__v": 0,
+            "code": 3
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "Rua Monsenhor Januário Sangirardi",
+                    "number": "36",
+                    "complement": "Nenhum",
+                    "district": "Freguesia do Ó",
+                    "postalCode": "02962100",
+                    "city": "São Paulo",
+                    "state": "SP",
+                    "deactivatedAt": null,
+                    "createdAt": "2019-08-14T18:02:14.219Z",
+                    "updatedAt": null
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "",
+                    "phoneMobile": ""
+                },
+                "fullName": "WINKEL Transportes SA",
+                "nickName": "WINKEL",
+                "federalDoc": "25206854000333",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "email": "ivano.sistemas@gmail.com",
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "Rua Professor Silva de Azevedo",
+                        "number": "122",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "02512510",
+                        "city": "São Paulo",
+                        "state": "SP",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "updatedAt": null,
+                "createdAt": "2020-02-23T16:45:09.703Z"
+            },
+            "actorType": [
+                "company",
+                "customer"
+            ],
+            "isActive": true,
+            "id": "3",
+            "homePage": "www.jmc.com.br",
+            "documents": [
+                {
+                    "id": "1",
+                    "title": "Contrato de Locação",
+                    "type": "Doc",
+                    "issuedDate": "2019-08-01T18:02:14.219Z",
+                    "expirateDate": "2019-12-31T18:02:14.219Z",
+                    "attachedFilePath": "teste"
+                }
+            ],
+            "vehicles": [],
+            "createdAt": "2020-01-09T21:37:51.000Z",
+            "updatedAt": "2020-06-29T21:56:47.000Z",
+            "deactivatedAt": null,
+            "__v": 0,
+            "code": 2
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "Rua Monsenhor Januário Sangirardi",
+                    "number": "33",
+                    "complement": "Nenhum",
+                    "district": "Freguesia do Ó",
+                    "postalCode": "02962100",
+                    "city": "São Paulo",
+                    "state": "SP",
+                    "deactivatedAt": null,
+                    "createdAt": "2019-08-14T18:02:14.219Z",
+                    "updatedAt": null
+                },
+                "phone": {
+                    "phoneHome": "23123",
+                    "phoneBussines": "123123",
+                    "phoneMobile": "123123"
+                },
+                "fullName": "Asturias Materiais Elétricos",
+                "nickName": "JMC",
+                "federalDoc": "25206854000125",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "email": "ivano.sistemas@gmail.com",
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "Rua Professor Silva de Azevedo",
+                        "number": "122",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "025125100",
+                        "city": "São Paulo",
+                        "state": "SP",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    },
+                    {
+                        "default": false,
+                        "isActive": true,
+                        "id": "2",
+                        "street": "Rua Felipe Gouveia da Silva",
+                        "number": "135",
+                        "complement": "Nenhum",
+                        "district": "Casa Verde",
+                        "postalCode": "025125100",
+                        "city": "São Paulo",
+                        "deactivatedAt": null,
+                        "createdAt": "2019-08-14T18:02:14.219Z",
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "updatedAt": null,
+                "createdAt": "2020-02-23T16:46:19.803Z"
+            },
+            "actorType": [
+                "company",
+                "supplier"
+            ],
+            "isActive": true,
+            "id": "4",
+            "homePage": "www.jmc.com.br",
+            "documents": [
+                {
+                    "id": "1",
+                    "title": "Contrato de Locação",
+                    "type": "Doc",
+                    "issuedDate": "2019-08-01T18:02:14.219Z",
+                    "expirateDate": "2019-12-31T18:02:14.219Z",
+                    "attachedFilePath": "teste"
+                }
+            ],
+            "vehicles": [
+                {
+                    "isActive": true,
+                    "createdAt": null,
+                    "id": "1",
+                    "acronym": "eqwe",
+                    "plate": "BMC3053",
+                    "statePlace": "São Paulo",
+                    "brand": "teste",
+                    "model": "teste",
+                    "color": "#ff0000",
+                    "yearOfManufacture": 1910,
+                    "yearOfModel": 1910,
+                    "fuelCapacity": 20,
+                    "Vin": "20",
+                    "deactivatedAt": null,
+                    "updatedAt": null
+                },
+                {
+                    "isActive": true,
+                    "createdAt": null,
+                    "id": "2",
+                    "acronym": "",
+                    "plate": "",
+                    "statePlace": "",
+                    "brand": "",
+                    "model": "",
+                    "color": "",
+                    "yearOfManufacture": 0,
+                    "yearOfModel": 0,
+                    "fuelCapacity": 0,
+                    "Vin": "",
+                    "deactivatedAt": null,
+                    "updatedAt": null
+                }
+            ],
+            "createdAt": "2020-01-11T14:36:04.000Z",
+            "updatedAt": "2020-03-15T02:36:19.000Z",
+            "deactivatedAt": null,
+            "__v": 0,
+            "code": 4
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "R LEOPOLDO COUTO MAGALHAES JUNIOR",
+                    "number": "700",
+                    "complement": "ANDAR 7 E 8 CONJ 71, 72, 81 E 82",
+                    "district": "ITAIM BIBI",
+                    "postalCode": "04542000",
+                    "city": "SAO PAULO",
+                    "state": "SP"
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "1155030000",
+                    "phoneMobile": ""
+                },
+                "fullName": "APPLE COMPUTER BRASIL LTDA",
+                "nickName": "APPLE",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "R LEOPOLDO COUTO MAGALHAES JUNIOR",
+                        "number": "700",
+                        "complement": "ANDAR 7 E 8 CONJ 71, 72, 81 E 82",
+                        "district": "ITAIM BIBI",
+                        "postalCode": "04542000",
+                        "city": "SAO PAULO",
+                        "state": "SP",
+                        "deactivatedAt": null,
+                        "createdAt": null,
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "createdAt": null,
+                "updatedAt": null,
+                "federalDoc": "00623904000173"
+            },
+            "actorType": [
+                "company",
+                "customer"
+            ],
+            "isActive": true,
+            "id": "5",
+            "homePage": "",
+            "code": 234,
+            "documents": [],
+            "vehicles": [],
+            "createdAt": "2020-06-30T23:20:46.000Z",
+            "updatedAt": "2020-06-30T23:20:46.000Z",
+            "deactivatedAt": null,
+            "__v": 0
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "R SACADURA CABRAL",
+                    "number": "102",
+                    "complement": "",
+                    "district": "SAUDE",
+                    "postalCode": "20081902",
+                    "city": "RIO DE JANEIRO",
+                    "state": "RJ"
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "2122066708",
+                    "phoneMobile": ""
+                },
+                "fullName": "LOJAS AMERICANAS S.A.",
+                "nickName": "AMERICANAS",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "R SACADURA CABRAL",
+                        "number": "102",
+                        "complement": "AMERICANAS",
+                        "district": "SAUDE",
+                        "postalCode": "20081902",
+                        "city": "RIO DE JANEIRO",
+                        "state": "RJ",
+                        "deactivatedAt": null,
+                        "createdAt": null,
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "createdAt": null,
+                "updatedAt": null,
+                "federalDoc": "33014556000196"
+            },
+            "actorType": [
+                "company"
+            ],
+            "isActive": true,
+            "id": "6",
+            "homePage": "",
+            "code": 123888,
+            "documents": [],
+            "vehicles": [],
+            "createdAt": "2020-07-04T18:58:58.000Z",
+            "updatedAt": "2020-07-04T18:58:58.000Z",
+            "deactivatedAt": null,
+            "__v": 0
+        },
+        {
+            "person": {
+                "address": {
+                    "default": true,
+                    "isActive": true,
+                    "street": "AV GENERAL JUSTO",
+                    "number": "375",
+                    "complement": "ANDAR 6 SALA 601 E 602",
+                    "district": "CENTRO",
+                    "postalCode": "20021130",
+                    "city": "RIO DE JANEIRO",
+                    "state": "RJ"
+                },
+                "phone": {
+                    "phoneHome": "",
+                    "phoneBussines": "552731827198",
+                    "phoneMobile": ""
+                },
+                "fullName": "LOG-IN - LOGISTICA INTERMODAL S/A",
+                "nickName": "LOG-IN",
+                "stateDoc": "",
+                "cityDoc": "",
+                "birthDate": null,
+                "addresses": [
+                    {
+                        "default": true,
+                        "isActive": true,
+                        "id": "1",
+                        "street": "AV GENERAL JUSTO",
+                        "number": "375",
+                        "complement": "ANDAR 6 SALA 601 E 602",
+                        "district": "CENTRO",
+                        "postalCode": "20021130",
+                        "city": "RIO DE JANEIRO",
+                        "state": "RJ",
+                        "deactivatedAt": null,
+                        "createdAt": null,
+                        "updatedAt": null
+                    }
+                ],
+                "deactivatedAt": null,
+                "createdAt": null,
+                "updatedAt": null,
+                "federalDoc": "42278291000124"
+            },
+            "actorType": [
+                "customer",
+                "company"
+            ],
+            "isActive": true,
+            "id": "7",
+            "homePage": "",
+            "code": 3445,
+            "documents": [],
+            "vehicles": [],
+            "createdAt": "2020-07-04T20:14:41.000Z",
+            "updatedAt": "2020-07-04T20:14:41.000Z",
+            "deactivatedAt": null,
+            "__v": 0
+        }
+    ]
+    
+}
