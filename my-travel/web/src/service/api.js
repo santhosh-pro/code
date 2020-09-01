@@ -3,7 +3,7 @@ import axios from  'axios';
 
 export const api = axios.create({
     //baseURL: 'http://enqueteapi.luxfacta.com/',
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://localhost:9001/',
     headers: {  
                 'Content-Type': 'application/json; charset=utf-8',                    
                 'Accept': '*/*' 

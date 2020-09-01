@@ -18,9 +18,9 @@ function ActorBrowser( props ) {
     <form>
         <div id="actor-browser" className="container" >
             <Browser
-                urn='actor' 
-                title='Ator' 
-                keyProp={'id'} 
+                urn='travelRoute' 
+                title='Rotas de Viagem' 
+                //keyProp={'id'} 
                 specView={SpecViewActorBrowser}
             />
         </div>
