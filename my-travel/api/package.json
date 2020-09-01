@@ -8,6 +8,7 @@
     "start": "nodemon src/app.js"
   },
   "dependencies": {
+    "cls-hooked": "^4.2.2",
     "consign": "^0.1.6",
     "express": "^4.17.1"
   }

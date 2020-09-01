@@ -1,21 +1,20 @@
 import React from 'react';
 
+import './theme/bootstrap.scss';
+
 import MainHeader from './components/MainHeader';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes/routes';
 
+export default function App() {
 
-function App() {
-
-    return (
-        <div>
-            <MainHeader />
-            <BrowserRouter>
-                <Routes />
-            </BrowserRouter>
-        </div>
-    );
-
+	return (
+		<div>
+			<MainHeader />
+			<BrowserRouter>
+				<Routes />
+			</BrowserRouter>
+		</div>
+	);	
+	
 }
-
-export default App;
