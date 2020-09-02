@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import TravelRouteBrowser from '../pages/actor/browser';
 import TravelRouteEdit from '../pages/actor/edit';
 
-
 export default function TravelRouteRoutes() {
 
     return (

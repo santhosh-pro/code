@@ -8,8 +8,6 @@ import ObjectListView from '../ObjectListView';
 import ObjectUtils from '../../utils/ObjectUtils';
 import EntityInstance from '../../infra/entity/EntityInstance';
 
-import saveIcon from '../../image/24/save.png';
-import backIcon from '../../image/24/back.png';
 import { ButtonFactory } from '../Button';
 
 function Edit( props ) {
@@ -106,6 +104,42 @@ function Edit( props ) {
     }
 
     const views = mountView();
+
+    /**
+     * Updates the state of the object being used in the component.
+     * @param {*} e - HTML DOM Events
+     * @param {*} currentObject - Current object that has changed
+     */
+
+    const updateState = ( e, currentObject ) => {
+
+        try {
+
+            const value = normalizeValue( e.target );
+            const path = e.target.id;
+
+            let newDataObject = Object.assign( {}, currentObject );
+
+            ObjectUtils.setPropertyValue( newDataObject, e.target.id, value );
+
+            setData( newDataObject );
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
+
+    }
+
+    const handleChange = ( e ) => {
+
+        e.persist();
+        updateState( e, data );
+
+    }
+
+
     /*    
 
     return (
@@ -162,46 +196,32 @@ function Edit( props ) {
         </div>
     )*/
 
-    const handleClickNew = event => {
+    const handleClickBack = event => {
 
-        props.history.push(`/${urn}/new`);
+        props.history.goBack();
 
     }
 
-    const createBtnAction = ( handler, className, iconName, param ) => {
+    const handleClickSave = ( handler, className, iconName, param ) => {
 
-        if ( handler )
-            return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
-        else
-            return undefined;
+        console.log( data );
     
     }
-
-    const handleClickRefresh = ( handler, className, iconName, param ) => {
-
-        if ( handler )
-            return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
-        else
-            return undefined;
-    
-    }
-
-    
     
     return (
         <div className="edit-object">        
             <div className="common-header">
                 <label>
-                    Enquete
+                    {props.title}
                 </label>
             </div>
             <div className="toolbar-container">
                 <div className="toolbar-buttons">
                 {
-                    createBtnAction( handleClickNew, '', 'arrow-back', null )
+                    createBtnAction( handleClickBack, '', 'arrow-back', null )
                 }               
                 {
-                    createBtnAction( handleClickRefresh, '', 'save', null )
+                    createBtnAction( handleClickSave, '', 'save', null )
                 }
                 </div>
             </div>
@@ -215,3 +235,61 @@ function Edit( props ) {
 } 
 
 export default withRouter( Edit );
+
+const createBtnAction = ( handler, className, iconName, param ) => {
+
+    if ( handler )
+        return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
+    else
+        return undefined;
+
+}
+
+const normalizeValue = ( field ) => {
+
+    var value = null;
+   
+    switch ( field.type ) {
+
+        case 'number':
+
+            value = field.value;
+
+            if ( Number.isInteger( value ) ) {
+
+                value = parseInt( value, 0 );
+
+            } else {
+
+                value = parseFloat( value );
+
+            }
+
+            break;
+
+        case 'checkbox':
+            value = field.checked;
+            break;
+        default:
+            value = field.value;
+            break;
+
+    }
+
+    return value;
+
+}
+
+const getPaths = ( field ) => {
+
+    const id = field.id;
+
+    if ( id.length === 0 ) {
+        throw new Error( 
+            'HTML element without id. It will not be possible to update the state of this property. ' 
+        );
+    }
+
+    return id.split( '.' ); 
+
+}

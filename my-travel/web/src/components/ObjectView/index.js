@@ -42,13 +42,15 @@ export default function ObjectView ( props ) {
 
     const drawCmp = ( svProp, data, index ) => {
 
+        const value = ObjectUtils.getPropertyValue( data, svProp.path );
+
         switch ( svProp.dataType ) {
 
             case 'string':  
-                return <Input key={index} spec={svProp} data={data} />
+                return <Input key={index} spec={svProp} value={value} />
 
             case 'number':  
-                return <Input key={index} spec={svProp} data={data} />    
+                return <Input key={index} spec={svProp} value={value} />    
 
             default: 
                 break;

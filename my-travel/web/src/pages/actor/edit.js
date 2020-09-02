@@ -5,10 +5,8 @@ import { SpecViewRouteEdit } from './specview';
 
 export default function RouteEdit ( props ) {
 
-
     let layoutRoute = new SpecViewLayout( SpecViewRouteEdit );
     layoutRoute.layoutType = LayoutType.TRIPLE;
-
     
     let layouts = [];
     layouts.push( layoutRoute );
@@ -20,6 +18,7 @@ export default function RouteEdit ( props ) {
                 keyProps={['origin', 'destination', 'value']}  
                 layouts={layouts} 
                 layoutType={LayoutType.DUPLE}
+                title={'Edição de Rota'}
             />  
         </div>  
     );

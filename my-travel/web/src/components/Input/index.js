@@ -6,11 +6,12 @@ export default function Input( props ) {
 
     const { spec, value } = props;
     const { onChange } = props;
+    let type = 'text';
+
+    console.log( props );
 
     if ( spec.dataType === 'number' )
-        type = 'number'
-    else
-        type = 'text'
+        type = 'number';
 
     const handleChange = event => {
 
