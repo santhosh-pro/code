@@ -1,7 +1,7 @@
 const readline = require( 'readline' );
 const modelProvider = require( '../infra/model-provider' );
 const fs = require( 'fs' );
-const { rejects } = require('assert');
+const Type = require( '../infra/type' );
 
 class CVSBinding {
     
@@ -20,7 +20,7 @@ class CVSBinding {
 
     async close() {
 
-        await fs.closeSync();
+       // await fs.closeSync();
 
     }
 
@@ -32,7 +32,7 @@ class CVSBinding {
             const props = Object.keys( model );
 
             let prop = props[ 0 ];
-            let value = data[ prop ];
+            let value = data[ prop  ];
 
             let register = value;
 
@@ -59,6 +59,7 @@ class CVSBinding {
         let model = modelProvider.getModel( schemaName );
 
         const columnsHeader = Object.keys( model );
+
         const count = columnsHeader.length;
         let collection = [];
 
@@ -121,9 +122,21 @@ class CVSBinding {
             for ( let i = 0; i <= columnsHeader.length -1; i++ ) {
 
                 const propName = columnsHeader[ i ];
+                const prop = model[ propName ];
                 const columnData = columnsData[ i ];
 
-                register[ propName ] = columnData;
+                if ( prop.type === Type.Number ) {
+
+                    if ( prop.decimal > 0 )
+                        register[ propName ] = parseFloat( columnData );
+                    else
+                        register[ propName ] = parseInt( columnData );
+
+                } else {
+
+                    register[ propName ] = columnData;
+
+                }
 
             }
 

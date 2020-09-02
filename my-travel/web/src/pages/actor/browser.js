@@ -15,17 +15,17 @@ function ActorBrowser( props ) {
     ];
 
    return (
-    <form>
-        <div id="actor-browser" className="container" >
-            <Browser
-                urn='travelRoute' 
-                title='Rotas' 
-                //keyProp={'origin'} 
-                specView={SpecViewActorBrowser}
-            />
-        </div>
-    </form>
-);    
+        <form>
+            <div id="actor-browser" className="container" >
+                <Browser
+                    urn='travelRoute' 
+                    title='Rotas' 
+                    keyProps={['origin', 'destination', 'value']} 
+                    specView={SpecViewActorBrowser}
+                />
+            </div>
+        </form>
+    );    
 
 }
 

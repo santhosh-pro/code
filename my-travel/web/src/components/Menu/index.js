@@ -5,7 +5,7 @@ function Menu( props ) {
 
     function pollHandleClick() {
 
-        props.history.push( `/${'actor'}` );
+        props.history.push( `/${'travelRoute'}` );
 
     }
 

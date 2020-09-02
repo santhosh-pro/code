@@ -229,11 +229,16 @@ export class SpecDataView {
     }       
 
     addNumber ( 
-        name, path, label, isRequired = false, minlenght = 2, maxlenght = 100
+        name, label, isRequired = false, minlenght = 2, maxlenght = 100
         ) {
 
+        const path = `${this.objectName}.${name}`;
+
+        const names = name.split( '.' );
+        const propName = names[ names.length -1 ];
+
         let svOProp = new SpecViewObjectPropertyNumber( 
-            name, path, label, isRequired, minlenght, maxlenght 
+            propName, path, label, isRequired, minlenght, maxlenght 
         );
 
         this.svOProps.push( svOProp );

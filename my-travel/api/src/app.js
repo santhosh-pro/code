@@ -6,9 +6,10 @@ const context = require( '../src/server/server-context' );
 
 context.createNamespace();
 const app = express();
-app.use( cors() );
+
 app.use( context.initContext() );
 
+app.use( cors() );
 app.use( express.json() );
 app.use( dbConnectionProviderMiddleware );
 

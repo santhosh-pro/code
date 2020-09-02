@@ -134,6 +134,8 @@ export default class ObjectUtils {
     static getPropertyValue( object, path ) {
        
         let value = undefined;
+
+        console.log( '>>>>>>>>>>>>', path, object );
         
         if ( path && path.length > 0 ) {
 

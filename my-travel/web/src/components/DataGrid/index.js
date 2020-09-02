@@ -49,7 +49,7 @@ export default function DataGrid ( props ) {
 
         for ( let i = 0; i <= specColumns.length -1; i++ ) {
 
-            specColumn = specColumns[i];
+            specColumn = specColumns[ i ];
 
             const value = ObjectUtils.getPropertyValue( item, specColumn.path );
 

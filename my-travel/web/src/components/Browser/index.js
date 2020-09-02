@@ -5,11 +5,11 @@ import ObjectUtils from '../../utils/ObjectUtils';
 import { withRouter } from 'react-router-dom';
 import { ButtonFactory } from '../Button';
 
-
 function Browser( props ) {
 
-    const { urn, keyProp, specView } = props;
+    const { urn, keyProps, specView } = props;
     const [ data, setData ] = useState([]);
+    const [ keyProp, setKeyProp ] = useState();
 
     const customActions = useRef( props.customActions );
     const specColumns = useRef([]);
@@ -29,7 +29,8 @@ function Browser( props ) {
 				data = response.data;
 			}
 
-			setData( data );
+            setData( data );
+            setKeyProp( getKey );
 
 		}
 
@@ -97,17 +98,44 @@ function Browser( props ) {
 
     },[setupColumns,setupActions]);
 
+    const getKey = ( item ) => {
+
+        let key = '';
+        let value = '';
+        let prop = '';
+
+        if ( keyProps && Array.isArray( keyProps ) ) {
+
+            for ( let i = 0; i <= keyProps.length -1; i ++  ) {
+
+                prop = keyProps[ i ];
+                value = ObjectUtils.getPropertyValue( item, prop );
+                key += `${value}`
+
+            }
+
+        } else {
+
+            throw new Error( 'Inválid key prop' );
+        }
+
+        return key;
+
+    }
+
 
     const handleClickEdit = ( event, item ) => {
-
-        const id = ObjectUtils.getPropertyValue( item, keyProp );
-        props.history.push( `/${urn}/${id}` );
+        
+        const keyProp = getKey( item );
+        //const id = ObjectUtils.getPropertyValue( item, keyProp );
+        props.history.push( `/${urn}/${keyProp}` );
 
     }
 
 
     const handleClickDelete = ( event, item ) => {
 
+        const keyProp = getKey( item );
         const id = ObjectUtils.getPropertyValue( item, keyProp );
 
         alert( id );
@@ -132,7 +160,6 @@ function Browser( props ) {
 
 			setData( data );
 
-    
     }
 
     
@@ -162,6 +189,7 @@ function Browser( props ) {
                 keyProp={keyProp}
                 specColumns={specColumns.current}
                 actions={actions}
+                showTitle={true}
             />
         </div>
     )

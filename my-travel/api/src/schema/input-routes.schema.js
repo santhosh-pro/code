@@ -1,7 +1,28 @@
+const type = require( '../infra/type' );
+
 const InputRoutes = {
-    origin : '',
-    destination : '',
-    value : 0
+
+    origin : {
+        type : type.String,
+        required : true,
+        isKey : true,
+        length : 3
+    },
+
+    destination : {
+        type : type.String,
+        required : true,
+        isKey : true,
+        length : 3
+    },
+
+    value : {
+        type : type.Number,
+        required : true,
+        isKey : true,
+        decimal : 0
+    }
+
 }
 
 module.exports = InputRoutes;

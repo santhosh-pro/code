@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import ActorBrowser from '../pages/actor/browser';
-import ActorEdit from '../pages/actor/edit';
+import TravelRouteBrowser from '../pages/actor/browser';
+import TravelRouteEdit from '../pages/actor/edit';
 
 
-export default function ActorRoutes() {
+export default function TravelRouteRoutes() {
 
     return (
         <Switch>
-            <Route exact path="/actor" component={ActorBrowser}/>
-            <Route exact path="/actor/new" component={ActorEdit}/>
-            <Route exact path="/actor/:id" component={ActorEdit}/>
+            <Route exact path="/travelRoute" component={TravelRouteBrowser}/>
+            <Route exact path="/travelRoute/new" component={TravelRouteEdit}/>
+            <Route exact path="/travelRoute/:id" component={TravelRouteEdit}/>
         </Switch>
     );
 

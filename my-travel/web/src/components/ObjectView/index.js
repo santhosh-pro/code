@@ -101,7 +101,6 @@ export default function ObjectView ( props ) {
         for ( let i = 0 ; i < svProps.length; i++ ) {
 
             const svProp = svProps[ i ];
-            console.log( i );
 
             switch ( svProp.propertyType ) {
 
