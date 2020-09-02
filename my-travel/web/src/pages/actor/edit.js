@@ -7,7 +7,7 @@ export default function RouteEdit ( props ) {
 
 
     let layoutRoute = new SpecViewLayout( SpecViewRouteEdit );
-    layoutRoute.layoutType = LayoutType.DUPLE;
+    layoutRoute.layoutType = LayoutType.TRIPLE;
 
     
     let layouts = [];

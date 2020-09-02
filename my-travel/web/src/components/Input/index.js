@@ -7,6 +7,11 @@ export default function Input( props ) {
     const { spec, value } = props;
     const { onChange } = props;
 
+    if ( spec.dataType === 'number' )
+        type = 'number'
+    else
+        type = 'text'
+
     const handleChange = event => {
 
         if ( onChange )
@@ -24,6 +29,9 @@ export default function Input( props ) {
                 value={value}
                 auto-complete="off"
                 onChange={handleChange}
+                maxLength={spec.maxLength}
+                minLength={spec.minLength}
+                type={type}
             />
         </InputContent>
     )
