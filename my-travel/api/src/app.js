@@ -40,5 +40,6 @@ app.listen( port, () => {
 
 /*
     criar model com especificação de tipo
+    ao gravar no csv forçar upper case
 
 */

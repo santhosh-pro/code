@@ -9,6 +9,9 @@ const TravelRoute = app => {
         .put( travelRouteController.update )
         .delete( travelRouteController.remove );
 
+    app.route( `${urn}/:key` )
+        .get( travelRouteController.findByKey );        
+
     app.route( `${urn}/bestRoute/:route` )
         .get( travelRouteController.bestRoute );
 

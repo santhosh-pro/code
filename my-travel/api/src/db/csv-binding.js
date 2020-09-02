@@ -149,6 +149,91 @@ class CVSBinding {
 
     }
 
+    async findByKey( schemaName, key ) {
+
+        let model = modelProvider.getModel( schemaName );
+
+        const columnsHeader = Object.keys( model );
+
+        const count = columnsHeader.length;
+        let collection = [];
+
+
+        const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
+        const lines = data.split( '\n' );
+
+        for ( let i = 0; i <= lines.length -1; i++ ) {
+
+            const line = lines[ i ];
+            const columnsData = line.split( ',' );
+
+            let register = {};
+
+            for ( let i = 0; i <= columnsHeader.length -1; i++ ) {
+
+                const propName = columnsHeader[ i ];
+                const prop = model[ propName ];
+                const columnData = columnsData[ i ];
+
+                if ( prop.type === Type.Number ) {
+
+                    if ( prop.decimal > 0 )
+                        register[ propName ] = parseFloat( columnData );
+                    else
+                        register[ propName ] = parseInt( columnData );
+
+                } else {
+
+                    register[ propName ] = columnData;
+
+                }
+
+            }
+
+            collection.push( register );
+
+        }
+
+        collection.sort( ( item1, item2 ) => { 
+            var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
+            var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`
+            return x < y ? -1 : x > y ? 1 : 0;
+        }); 
+
+        return collection.find( item => {
+
+            if ( key === `${item.origin.toUpperCase()}${item.destination.toUpperCase()}${item.value}` )
+                return item;
+           
+        });
+
+        /*
+        let low = 0;
+		let high = collection.length-1;
+        let mid;
+        let found = false;
+
+		while ( low <= high ) {
+
+			mid = ( low + high )  / 2;
+
+			if ( collection[ mid ].compareTo( x ) < 0)
+				low = mid + 1;
+            else
+            if( collection[ mid ].compareTo( x ) > 0)
+				high = mid - 1;
+			else
+                found = true;
+                
+        }
+        
+        if ( found )
+            return collection[ mid ];
+        else
+            return null;*/
+
+    }
+
 }
 
 module.exports = CVSBinding;

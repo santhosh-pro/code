@@ -1,12 +1,27 @@
 import React from 'react';
 import Edit from '../../components/Edit';
+import { SpecViewLayout, LayoutType } from '../../infra/specview/SpecViewLayout';
+import { SpecViewRouteEdit } from './specview';
 
-export default function ActorEdit ( props ) {
+export default function RouteEdit ( props ) {
 
+
+    let layoutRoute = new SpecViewLayout( SpecViewRouteEdit );
+    layoutRoute.layoutType = LayoutType.DUPLE;
+
+    
+    let layouts = [];
+    layouts.push( layoutRoute );
+    
     return (
-        <h1>
-            props
-        </h1>
+        <div id="route-edit" className="container" >
+            <Edit 
+                urn={'travelRoute'}
+                keyProps={['origin', 'destination', 'value']}  
+                layouts={layouts} 
+                layoutType={LayoutType.DUPLE}
+            />  
+        </div>  
     );
 
 }

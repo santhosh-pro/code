@@ -23,6 +23,14 @@ class Service {
 
     }
 
+    async findByKey ( key ) {
+
+        const collection = await this.dataSet.findByKey( key );
+
+        return collection;
+
+    }
+
     async update () {
 
         console.log( 'update' );

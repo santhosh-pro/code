@@ -22,8 +22,6 @@ function Edit( props ) {
 
         const fetch = async () => {
 
-            alert( id );
-
             let response = null;
 
             if ( id ) {

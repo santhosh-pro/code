@@ -15,6 +15,12 @@ class DataAccess {
 
     }
 
+    async findByKey( key ) {
+
+        return await this.db.findByKey( this.schemaName, key );
+
+    }
+
     async create( data ) {
 
         return this.db.create( this.schemaName, data );

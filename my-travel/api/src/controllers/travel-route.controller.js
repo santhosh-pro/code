@@ -36,6 +36,23 @@ const TravelRouteController = {
 
     },
 
+    async findByKey( req, res, next ) {
+
+        try {
+
+            const { key } = req.params;
+            
+            const travelRoutes = await travelService().findByKey( key );
+            res.status( 200 ).json( travelRoutes );
+
+        } catch ( error ) {
+
+            next( error );
+
+        }
+
+    },
+
     async update( req, res, next ) {
 
         try {
