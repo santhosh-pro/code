@@ -1,5 +1,6 @@
 import { SpecViewType } from '../../infra/specview/SpecView';
 import { SpecDataView } from '../../infra/specview/SpecDataView';
+import { get, api } from '../../service/api';
 
 const SVActorBrowser = () => {
 
@@ -15,14 +16,66 @@ const SVActorBrowser = () => {
 
 const SVRouteEdit = () => {
 
+    let svRouteEdit = new SpecDataView( 'route', '', SpecViewType.OBJECT );
+    svRouteEdit.addString( 'origin', 'Origem', true, 3, 3 );  
+    svRouteEdit.addString( 'destination', 'Destino', true, 3, 3 );
+    svRouteEdit.addNumber( 'value', 'Valor', true );    
+
+    return svRouteEdit;
+
+}
+
+
+const SVRoute = () => {
+
     let svRoute = new SpecDataView( 'route', '', SpecViewType.OBJECT );
     svRoute.addString( 'origin', 'Origem', true, 3, 3 );  
-    svRoute.addString( 'destination', 'Destino', true, 3, 3 );
-    svRoute.addNumber( 'value', 'Valor', true );    
+    let svDestination = svRoute.addString( 'destination', 'Destino', true, 3, 3 );
+
+    svDestination.onBlur = async ( event, dataObject ) => {
+
+       // let dataObject = params[ 1 ];
+        
+        const origin = dataObject.origin;
+        const destination = dataObject.destination;
+
+        const response = await get( `travelRoute/bestRoute/${origin}-${destination}` );
+                                           
+        if ( response && response.data ) {
+
+            const data = response.data;
+
+            let bestRoute = data.bestRoute.reduce( ( bestRoute, item ) => {
+
+                return bestRoute += ' - ' + item;
+
+            });
+
+            const price = data.price;
+            bestRoute = bestRoute + ' - ' + price;
+
+            dataObject.bestRoute = bestRoute;
+
+            console.log(  dataObject );
+           
+        }
+
+    }
 
     return svRoute;
 
 }
 
+const SVBestTravel = () => {
+
+    let svBestTravel = new SpecDataView( 'bestTravel', '', SpecViewType.OBJECT );
+    svBestTravel.addString( 'bestTravel', 'Melhor opção', true, 3, 3 );
+
+    return svBestTravel;
+
+}
+
 export const SpecViewActorBrowser = SVActorBrowser();
 export const SpecViewRouteEdit = SVRouteEdit();
+export const SpecViewRoute = SVRoute();
+export const SpecViewBestTravel = SVBestTravel();

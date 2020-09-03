@@ -3,20 +3,27 @@ import { withRouter } from 'react-router-dom';
 
 function Menu( props ) {
 
-    function pollHandleClick() {
+    function travelRouteClick() {
 
         props.history.push( `/${'travelRoute'}` );
 
     }
 
+    const bestTravelClick = () => {
+
+        props.history.push( `/${'bestTravel'}` );
+
+    }
+   
+
     return(
 
         <div className="main-menu" >
             <div className="main-menu-container" > 
-                <span onClick={()=>pollHandleClick()} >
+                <span onClick={()=>travelRouteClick()} >
                     Rotas
                 </span>
-                <span>
+                <span onClick={()=>bestTravelClick()}>
                     Viagem
                 </span>
             </div>

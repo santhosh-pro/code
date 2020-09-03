@@ -46,10 +46,10 @@ export default function ObjectView ( props ) {
         switch ( svProp.dataType ) {
 
             case 'string':  
-                return <Input key={index} spec={svProp} value={value} onChange={events.onChange} />
+                return <Input key={index} spec={svProp} value={value} events={events} />
 
             case 'number':  
-                return <Input key={index} spec={svProp} value={value} onChange={events.onChange} />    
+                return <Input key={index} spec={svProp} value={value} events={events} />    
 
             default: 
                 break;

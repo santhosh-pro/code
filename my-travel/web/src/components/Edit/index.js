@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { get, post, put } from '../../service/api';
@@ -51,9 +51,63 @@ function Edit( props ) {
 
     }
 
+    const handleBlur = async ( event ) => {
+
+        event.persist();
+
+        console.log( dataObject );
+
+        if ( props.onBlur ) {
+            props.onBlur( event, dataObject );
+        }
+
+        const svProp = getCurrentSVProp( event );
+
+        if ( svProp && svProp.onBlur )
+            await svProp.onBlur( event, dataObject );
+
+    
+    }
+
     const events = {
         onChange : handleChange,
+        onBlur : handleBlur
     }
+
+    const getCurrentSVProp = useCallback( ( e ) => {
+
+        let prop = null;
+        const specLayout = props.specLayout;
+
+        if ( e && layouts ) {
+
+            for ( let i = 0; i <= layouts.length-1; i++ ) {
+                
+                const lay = layouts[ i ];
+
+                const spec = lay.specDTV;
+
+                const svOProps = spec.svOProps;
+
+                for ( let j = 0; j <= svOProps.length-1; j++ ) {
+                   
+                    prop = svOProps[ j ];
+
+                    if ( prop.path === e.target.id ) {
+
+                        return prop;
+
+                    }
+
+                }
+                
+            }
+
+        }
+
+        return prop;        
+
+    }, [ props ] );
 
     const mountView = () => {
 

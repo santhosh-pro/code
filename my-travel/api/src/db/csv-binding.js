@@ -2,6 +2,7 @@ const readline = require( 'readline' );
 const modelProvider = require( '../infra/model-provider' );
 const fs = require( 'fs' );
 const Type = require( '../infra/type' );
+const { deepStrictEqual } = require('assert');
 
 class CVSBinding {
     
@@ -9,26 +10,12 @@ class CVSBinding {
 
         this._uri = uri;
 
-        if ( fs.existsSync( uri ) )
-            this._readable = fs.createReadStream( uri );
-
     }
-
-    static get readable() {
-
-        return this.hasOwnProperty( '_readable' ) ? this._readable : void 0;
-
-    } 
 
     async close() {
 
-        await fs.closeSync();
-
-    }
-
-    async fileExists () {
-
-        return await fs.existsSync( this._uri );
+        fs.existsSync( this._uri )
+            await fs.closeSync();
 
     }
 
@@ -36,7 +23,7 @@ class CVSBinding {
 
         let lines = [];
 
-        if ( this.fileExists() ) {
+        if ( fs.existsSync( this._uri ) ) {
 
             const data = await fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
             lines = data.split( '\n' );  
@@ -95,53 +82,8 @@ class CVSBinding {
         const count = columnsHeader.length;
         let collection = [];
 
-        /* Processamento mais lento
-        const rl = readline.createInterface({
-            input: this._readable,
-            output: process.stdout
-        });
-
-        const promisse = new Promise( ( resolve, reject ) => {
-
-            try {
-
-                rl.on( 'line',  ( line ) => {
-
-                    if ( line ) {
-        
-                        const row = line.split( ',' );
-        
-                        let data = {};
-        
-                        for ( let i = 0; i <= count -1; i++ ) {
-        
-                            const propName = columnsHeader[ i ];
-                            data[ propName ] = row[ i ]
-        
-                        }
-        
-                        collection.push( data );
-                        resolve( collection );
-        
-                    }
-        
-                });
-
-                rl.close;
-
-            } catch ( err ) {
-
-                reject( err );
-
-            }
-
-        });
-
-        return promisse;
-        //*/
-
         const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
-        const lines = data.split( '\n' );
+        const lines = data.split( '\r\n' );
 
         for ( let i = 0; i <= lines.length -1; i++ ) {
 
@@ -175,10 +117,12 @@ class CVSBinding {
 
         }
 
+
+
         if ( collection && collection[ 0 ].length === 0 )
-            return collection;
-        else    
             return [];
+        else    
+            return collection;
 
     }
 
@@ -196,8 +140,6 @@ class CVSBinding {
 
          }
 
-         console.log( await this.isEmpty() );
-
         return collection.find( item => {
 
             if ( key === `${item.origin.toUpperCase()}${item.destination.toUpperCase()}${item.value}` )
@@ -210,10 +152,12 @@ class CVSBinding {
     }
 
     async remove( schemaName, key ) {
-/*
+
+        let collection = [];
+
         if ( fs.existsSync( this._uri ) ) {
 
-            const collection = await this.find( schemaName );
+            collection = await this.find( schemaName );
             
             if ( collection && collection.length > 1 ) {
             
@@ -239,19 +183,21 @@ class CVSBinding {
 
             await fs.unlinkSync( this._uri );
 
-        }    */
+        }  else {  
         
-       // await fs.writeFileSync( this._uri );
+            await fs.writeFileSync( this._uri );
 
-      //  for ( let i = 0; i <= collection.length-1; i++) {
+        }
 
-      //      const register = collection[ i ];
+        for ( let i = 0; i <= collection.length-1; i++) {
 
-      //      this.create( schemaName, register );
+            const register = collection[ i ];
 
-       // }
+            this.create( schemaName, register );
 
-       return {};
+        }
+
+       return key;
 
     }
 

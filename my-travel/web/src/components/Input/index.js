@@ -5,7 +5,7 @@ import './styles.css';
 export default function Input( props ) {
 
     const { spec, value } = props;
-    const { onChange } = props;
+    const { onChange, onBlur } = props.events;
     let type = 'text';
 
     if ( spec.dataType === 'number' )
@@ -21,6 +21,14 @@ export default function Input( props ) {
 
     }
 
+    const handleBlur = async event => {
+
+        if ( onBlur ) {
+            await onBlur( event );
+        }
+
+    }
+
     return (
         <div className="input-content" >
             <label htmlFor={spec.path}>
@@ -31,6 +39,7 @@ export default function Input( props ) {
                 value={value}
                 auto-complete="off"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 maxLength={spec.maxLength}
                 minLength={spec.minLength}
                 type={type}
