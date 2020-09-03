@@ -17,7 +17,7 @@ export default function RouteEdit ( props ) {
                 urn={'travelRoute'}
                 keyProps={['origin', 'destination', 'value']}  
                 layouts={layouts} 
-                layoutType={LayoutType.DUPLE}
+                layoutType={LayoutType.SINGLE}
                 title={'Edição de Rota'}
             />  
         </div>  

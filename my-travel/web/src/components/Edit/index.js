@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { get } from '../../service/api';
 import { SpecViewType } from '../../infra/specview/SpecView';
 import ObjecView from '../../components/ObjectView';
-import ObjectListView from '../ObjectListView';
 import ObjectUtils from '../../utils/ObjectUtils';
 import EntityInstance from '../../infra/entity/EntityInstance';
 
@@ -12,9 +11,10 @@ import { ButtonFactory } from '../Button';
 
 function Edit( props ) {
 
-    const { urn, layouts, layoutType } = props; 
-    const { id } = props.match.params; 
-    const [ data, setData ] = useState(undefined);
+    const [ dataObject, setDataObject ] = useState(undefined);
+
+    const { urn, layouts } = props; 
+    const { key } = props.match.params; 
  
     useEffect( () => {
 
@@ -22,19 +22,19 @@ function Edit( props ) {
 
             let response = null;
 
-            if ( id ) {
+            if ( key ) {
 
-                response = await get( `${urn}/${id}`);
+                response = await get( `${urn}/${key}`);
 
                 if ( response ) {
 
-                    setData( response.data );
+                    setDataObject( response.data );
 
                 }
 
             } else {
 
-                setData( EntityInstance.newInstance( urn ) );
+                setDataObject( EntityInstance.newInstance( urn ) );
 
             }
 
@@ -42,12 +42,12 @@ function Edit( props ) {
 
         fetch();
 
-    }, [ urn, id ] );
+    }, [ urn, key ] );
 
 
     const mountView = () => {
 
-        if ( !data ) return
+        if ( !dataObject ) return
 
         let views = [];
 
@@ -66,29 +66,12 @@ function Edit( props ) {
                         views.push( 
                             <ObjecView 
                                 key={i} 
-                                dataObject={data} 
+                                dataObject={dataObject} 
                                 specViewLayout={specLayout} 
                             /> 
                         );
                         
                         break;
-
-                    case SpecViewType.LIST :
-
-                        const specDTV = specLayout.specDTV;
-
-                        const dataList = ObjectUtils.getPropertyValue( data, specDTV.path );
-
-                        views.push (
-                            <ObjectListView
-                                key={i}
-                                dataList={dataList} 
-                                specViewLayout={specLayout} 
-                            />
-
-                        );
-
-                    break;
                 
                     default:
                         break;
@@ -116,13 +99,12 @@ function Edit( props ) {
         try {
 
             const value = normalizeValue( e.target );
-            const path = e.target.id;
 
             let newDataObject = Object.assign( {}, currentObject );
 
             ObjectUtils.setPropertyValue( newDataObject, e.target.id, value );
 
-            setData( newDataObject );
+            setDataObject( newDataObject );
 
         } catch ( err ) {
 
@@ -135,66 +117,9 @@ function Edit( props ) {
     const handleChange = ( e ) => {
 
         e.persist();
-        updateState( e, data );
+        updateState( e, dataObject );
 
     }
-
-
-    /*    
-
-    return (
-        <div id="poll-edit" className="container" >
-            <header className="edit-header" >
-                <h3>Enquete</h3>
-            </header>
-            <div className="edit-tollbar">
-                <div className="edit-buttons-container">
-                    <button className="btn-close">
-                        <img src={backIcon} alt="Voltar" />
-                    </button>
-                    <button className="btn-save">
-                        <img src={saveIcon} alt="Salvar" />
-                    </button>    
-                </div>
-            </div>
-            <div className="edit-content">
-                <div className="edit-layout-poll">
-                    <div className="input-block">
-                        <label htmlFor="poll_description" className="">Descricao</label>
-                        <input type="text" id="poll_description"/>
-                    </div>
-                </div>
-                <div className="edit-options-list">
-                    <div className="tollbar-object-list">
-
-                    </div>
-                    <div className="edit-layout-options">
-                        <div className="object-list">
-                            <div>
-                                <table className="">                     
-                                    <tbody>
-                                    { data && data.options &&
-                                    data.options.map( item => (
-
-                                        <tr
-                                            key={1} 
-                                            value={item}                                  
-                                            //onClick={ (e) => handleRowClick( e, item ) } 
-                                            >                                        
-                                            <td>
-                                                { ObjectUtils.getPropertyValue( item, 'option_description' ) }
-                                            </td>                                                         
-                                        </tr>                                          
-                                    ))}
-                                    </tbody>   
-                                </table>
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )*/
 
     const handleClickBack = event => {
 
@@ -204,7 +129,7 @@ function Edit( props ) {
 
     const handleClickSave = ( handler, className, iconName, param ) => {
 
-        console.log( data );
+        console.log( dataObject );
     
     }
     
@@ -277,19 +202,5 @@ const normalizeValue = ( field ) => {
     }
 
     return value;
-
-}
-
-const getPaths = ( field ) => {
-
-    const id = field.id;
-
-    if ( id.length === 0 ) {
-        throw new Error( 
-            'HTML element without id. It will not be possible to update the state of this property. ' 
-        );
-    }
-
-    return id.split( '.' ); 
 
 }

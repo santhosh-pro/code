@@ -24,7 +24,6 @@ function EditObject( props ) {
 
     const [ dataObject, setDataObject ] = useState(null);
 
-    /*
     useEffect( () => {
 
         const fecth = async () => {
@@ -42,7 +41,7 @@ function EditObject( props ) {
         fecth();
 
     }, []);
-    */
+    
 
     const handleClickBack = event => {
 

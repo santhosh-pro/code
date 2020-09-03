@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { InputContent, InputLabel, InputData } from './styles';
+import './styles.css';
 
 export default function Input( props ) {
 
     const { spec, value } = props;
     const { onChange } = props;
     let type = 'text';
-
-    console.log( props );
 
     if ( spec.dataType === 'number' )
         type = 'number';
@@ -20,12 +18,25 @@ export default function Input( props ) {
 
     }
 
+    const onlyNumber = (e) => {
+        var charCode = e.charCode ? e.charCode : e.keyCode;
+        // charCode 8 = backspace   
+        // charCode 9 = tab
+        if (charCode != 8 && charCode != 9) {
+            // charCode 48 equivale a 0   
+            // charCode 57 equivale a 9
+            if (charCode < 48 || charCode > 57) {
+                return false;
+            }
+        }
+    }
+
     return (
-        <InputContent>
-            <InputLabel htmlFor={spec.path}>
+        <div className="input-content" >
+            <label htmlFor={spec.path}>
                 {spec.label}
-            </InputLabel>
-            <InputData
+            </label>
+            <input
                 id={spec.path}                
                 value={value}
                 auto-complete="off"
@@ -33,8 +44,9 @@ export default function Input( props ) {
                 maxLength={spec.maxLength}
                 minLength={spec.minLength}
                 type={type}
+                onKeyPress="return somenteNumeros(event)"
             />
-        </InputContent>
+        </div>
     )
 
 }

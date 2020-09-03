@@ -77,22 +77,6 @@ export default function ObjectView ( props ) {
 
     }
 
-    const drawObjectList = ( specViewLayout, dataObjectList, svOProp, index ) => {
-
-        let viewObjectList = undefined;
-
-        viewObjectList = <ObjectListView 
-                            specLayout={specViewLayout} 
-                            dataList={dataObjectList} 
-                            svOProp={svOProp} 
-                        />
-    
-        
-        return viewObjectList;
-
-
-    }
-
 
     if ( specViewLayout.specDTV ) {
 
@@ -114,19 +98,10 @@ export default function ObjectView ( props ) {
 
                 case ObjectPropertyType.OBJECT : 
                 
-                    const dataObjectProp = ObjectUtils.getPropertyValue( dataObject, svProp.name ); 
+                    const dataObjectProp = ObjectUtils.getPropertyValue( dataObject, svProp.path ); 
                     let layObjectProp = specViewLayout.findLayout( svProp.specDTVObject.objectName );
                 
                     cmp = drawObject( layObjectProp, dataObjectProp );
-
-                break;
-
-                case ObjectPropertyType.LIST :
-
-                    const dataObjectList = dataObject[svProp.name]; 
-                    let layObjectListProp = specViewLayout.findLayout( svProp.specDTVObject.objectName );
-                    
-                    cmp = drawObjectList( layObjectListProp, dataObjectList, svProp, i );
 
                 break;
 
