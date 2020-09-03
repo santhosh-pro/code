@@ -7,8 +7,10 @@ class CVSBinding {
     
     constructor ( uri ) {
 
-        this._readable = fs.createReadStream( uri );
         this._uri = uri;
+
+        if ( fs.existsSync( uri ) )
+            this._readable = fs.createReadStream( uri );
 
     }
 
@@ -22,6 +24,33 @@ class CVSBinding {
 
         await fs.closeSync();
 
+    }
+
+    async fileExists () {
+
+        return await fs.existsSync( this._uri );
+
+    }
+
+    async getContentFile () {
+
+        let lines = [];
+
+        if ( this.fileExists() ) {
+
+            const data = await fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
+            lines = data.split( '\n' );  
+
+        }
+
+        return lines;
+    }
+
+    async fileIsEmpty() {
+
+       const lines = await this.getContentFile();
+       return lines[ 0 ].length === 0;
+            
     }
 
     async create( schemaName, data ) {
@@ -46,7 +75,10 @@ class CVSBinding {
 
             }
 
-            fs.writeFileSync( this._uri, '\n' + register, { encoding:'utf8', flag: 'a+' } );
+            if ( await this.fileIsEmpty() ) 
+                fs.writeFileSync( this._uri, register, { encoding:'utf8', flag : 'w' } );
+            else    
+                fs.writeFileSync( this._uri, '\n' + register, { encoding:'utf8', flag : 'a+' } );
 
         }
 
@@ -143,59 +175,28 @@ class CVSBinding {
 
         }
 
-        return collection;
+        if ( collection && collection[ 0 ].length === 0 )
+            return collection;
+        else    
+            return [];
 
     }
 
     async findByKey( schemaName, key ) {
 
-        let model = modelProvider.getModel( schemaName );
+        const collection = await this.find( schemaName );
 
-        const columnsHeader = Object.keys( model );
+        if ( collection && collection.length > 1 ) {
+        
+            collection.sort( ( item1, item2 ) => { 
+                var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
+                var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
+                return x < y ? -1 : x > y ? 1 : 0;
+            }); 
 
-        const count = columnsHeader.length;
-        let collection = [];
+         }
 
-        const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
-        const lines = data.split( '\n' );
-
-        for ( let i = 0; i <= lines.length -1; i++ ) {
-
-            const line = lines[ i ];
-            const columnsData = line.split( ',' );
-
-            let register = {};
-
-            for ( let i = 0; i <= columnsHeader.length -1; i++ ) {
-
-                const propName = columnsHeader[ i ];
-                const prop = model[ propName ];
-                const columnData = columnsData[ i ];
-
-                if ( prop.type === Type.Number ) {
-
-                    if ( prop.decimal > 0 )
-                        register[ propName ] = parseFloat( columnData );
-                    else
-                        register[ propName ] = parseInt( columnData );
-
-                } else {
-
-                    register[ propName ] = columnData;
-
-                }
-
-            }
-
-            collection.push( register );
-
-        }
-
-        collection.sort( ( item1, item2 ) => { 
-            var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
-            var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
-            return x < y ? -1 : x > y ? 1 : 0;
-        }); 
+         console.log( await this.isEmpty() );
 
         return collection.find( item => {
 
@@ -204,22 +205,53 @@ class CVSBinding {
            
         });
 
+       
+
     }
 
     async remove( schemaName, key ) {
+/*
+        if ( fs.existsSync( this._uri ) ) {
 
-        let model = modelProvider.getModel( schemaName );
+            const collection = await this.find( schemaName );
+            
+            if ( collection && collection.length > 1 ) {
+            
+                collection.sort( ( item1, item2 ) => { 
+                    var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
+                    var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
+                    return x < y ? -1 : x > y ? 1 : 0;
+                }); 
 
-        const columnsHeader = Object.keys( model );
+            }
 
-        const count = columnsHeader.length;
-        let collection = [];
+            const index = collection.findIndex( item => {
 
-        const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
-        const lines = data.split( '\n' );
+                return `${item.origin.toUpperCase()}${item.destination.toUpperCase()}${item.value}` === key;
+        
+            });
 
-        console.log( lines) ;
+            if ( index >= 0 ) {
 
+                collection.splice( index, 1 );
+
+            }
+
+            await fs.unlinkSync( this._uri );
+
+        }    */
+        
+       // await fs.writeFileSync( this._uri );
+
+      //  for ( let i = 0; i <= collection.length-1; i++) {
+
+      //      const register = collection[ i ];
+
+      //      this.create( schemaName, register );
+
+       // }
+
+       return {};
 
     }
 
