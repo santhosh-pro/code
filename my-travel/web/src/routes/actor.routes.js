@@ -9,7 +9,7 @@ export default function TravelRouteRoutes() {
         <Switch>
             <Route exact path="/travelRoute" component={TravelRouteBrowser}/>
             <Route exact path="/travelRoute/new" component={TravelRouteEdit}/>
-            <Route exact path="/travelRoute/:id" component={TravelRouteEdit}/>
+            <Route exact path="/travelRoute/:key" component={TravelRouteEdit}/>
         </Switch>
     );
 

@@ -3,15 +3,14 @@ import { LayoutType, SpecViewLayout } from '../../infra/specview/SpecViewLayout'
 import Input from '../Input';
 import { ObjectPropertyType } from '../../infra/specview/SpecViewObjectProp';
 import ObjectUtils from '../../utils/ObjectUtils';
-import ObjectListView from '../ObjectListView';
 
 import './styles.scss';
 
 export default function ObjectView ( props ) {
 
-    const { specViewLayout, dataObject } = props; 
+    const { specViewLayout, dataObject, events } = props; 
     let cmps = [];
-
+    
     if ( ( specViewLayout instanceof SpecViewLayout ) === false ) {
         throw new Error( 
             `The Edit visualization component waits to receive an instance of the SpecViewLayout class and received ${specViewLayout}` );
@@ -47,10 +46,10 @@ export default function ObjectView ( props ) {
         switch ( svProp.dataType ) {
 
             case 'string':  
-                return <Input key={index} spec={svProp} value={value} />
+                return <Input key={index} spec={svProp} value={value} onChange={events.onChange} />
 
             case 'number':  
-                return <Input key={index} spec={svProp} value={value} />    
+                return <Input key={index} spec={svProp} value={value} onChange={events.onChange} />    
 
             default: 
                 break;

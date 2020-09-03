@@ -31,15 +31,11 @@ class Service {
 
     }
 
-    async update () {
+    async remove ( key ) {
 
-        console.log( 'update' );
+        const data = await this.dataSet.remove( key );
 
-    }
-
-    async remove () {
-
-        console.log( 'remove' );
+        return data;
 
     }
 

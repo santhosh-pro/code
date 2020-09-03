@@ -20,7 +20,7 @@ class CVSBinding {
 
     async close() {
 
-       // await fs.closeSync();
+        await fs.closeSync();
 
     }
 
@@ -108,7 +108,6 @@ class CVSBinding {
         return promisse;
         //*/
 
-        //*
         const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
         const lines = data.split( '\n' );
 
@@ -145,7 +144,6 @@ class CVSBinding {
         }
 
         return collection;
-        //*/
 
     }
 
@@ -157,7 +155,6 @@ class CVSBinding {
 
         const count = columnsHeader.length;
         let collection = [];
-
 
         const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
         const lines = data.split( '\n' );
@@ -196,7 +193,7 @@ class CVSBinding {
 
         collection.sort( ( item1, item2 ) => { 
             var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
-            var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`
+            var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
             return x < y ? -1 : x > y ? 1 : 0;
         }); 
 
@@ -207,30 +204,22 @@ class CVSBinding {
            
         });
 
-        /*
-        let low = 0;
-		let high = collection.length-1;
-        let mid;
-        let found = false;
+    }
 
-		while ( low <= high ) {
+    async remove( schemaName, key ) {
 
-			mid = ( low + high )  / 2;
+        let model = modelProvider.getModel( schemaName );
 
-			if ( collection[ mid ].compareTo( x ) < 0)
-				low = mid + 1;
-            else
-            if( collection[ mid ].compareTo( x ) > 0)
-				high = mid - 1;
-			else
-                found = true;
-                
-        }
-        
-        if ( found )
-            return collection[ mid ];
-        else
-            return null;*/
+        const columnsHeader = Object.keys( model );
+
+        const count = columnsHeader.length;
+        let collection = [];
+
+        const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
+        const lines = data.split( '\n' );
+
+        console.log( lines) ;
+
 
     }
 

@@ -27,6 +27,12 @@ class DataAccess {
 
     }
 
+    async remove( key ) {
+
+        return await this.db.remove( this.schemaName, key );
+
+    }
+
 }
 
 

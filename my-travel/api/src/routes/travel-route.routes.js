@@ -5,12 +5,12 @@ const TravelRoute = app => {
 
     app.route( urn )
         .post( travelRouteController.create )
-        .get( travelRouteController.find )
-        .put( travelRouteController.update )
-        .delete( travelRouteController.remove );
+        .get( travelRouteController.find );
+        
 
     app.route( `${urn}/:key` )
-        .get( travelRouteController.findByKey );        
+        .get( travelRouteController.findByKey )
+        .delete( travelRouteController.remove );      
 
     app.route( `${urn}/bestRoute/:route` )
         .get( travelRouteController.bestRoute );

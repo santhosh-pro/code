@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { get } from '../../service/api';
+import { get, post, put } from '../../service/api';
 import { SpecViewType } from '../../infra/specview/SpecView';
 import ObjecView from '../../components/ObjectView';
 import ObjectUtils from '../../utils/ObjectUtils';
@@ -44,6 +44,16 @@ function Edit( props ) {
 
     }, [ urn, key ] );
 
+    const handleChange = ( event ) => {
+
+        event.persist();
+        updateState( event, dataObject );
+
+    }
+
+    const events = {
+        onChange : handleChange,
+    }
 
     const mountView = () => {
 
@@ -68,6 +78,7 @@ function Edit( props ) {
                                 key={i} 
                                 dataObject={dataObject} 
                                 specViewLayout={specLayout} 
+                                events={events}
                             /> 
                         );
                         
@@ -114,25 +125,35 @@ function Edit( props ) {
 
     }
 
-    const handleChange = ( e ) => {
-
-        e.persist();
-        updateState( e, dataObject );
-
-    }
-
     const handleClickBack = event => {
 
         props.history.goBack();
 
     }
 
-    const handleClickSave = ( handler, className, iconName, param ) => {
+    const handleClickSave = async ( event ) => {
 
-        console.log( dataObject );
+        try {
+
+            alert( key );
+
+            if ( key ) {
+
+                await put( urn, dataObject );
+
+            } else {
+
+                await post( urn, dataObject );
+            }
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
     
     }
-    
+
     return (
         <div className="edit-object">        
             <div className="common-header">

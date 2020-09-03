@@ -17,7 +17,7 @@ function Menu( props ) {
                     Rotas
                 </span>
                 <span>
-                    Melhor viagem
+                    Viagem
                 </span>
             </div>
         </div>

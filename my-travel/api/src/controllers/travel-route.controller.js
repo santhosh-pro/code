@@ -53,31 +53,14 @@ const TravelRouteController = {
 
     },
 
-    async update( req, res, next ) {
-
-        try {
-
-            //const travelRoute = await travelService().update( req.query, req.body );
-            //res.status( 200 ).json( travelRoute );     
-            res.status( 200 ).json( 'Rotina não implementada.' );           
-
-        } catch ( error ) {
-
-            next( error );
-
-        }
-
-        next();
-
-    },
-
     async remove( req, res, next ) {
 
         try {
 
-            //const travelRoute = await travelService().update( req.query, req.body );
-            //res.status( 200 ).json( travelRoute );     
-            res.status( 200 ).json( 'Rotina não implementada.' );           
+            const { key } = req.params;
+
+            const travelRoutes = await travelService().remove( key );
+            res.status( 200 ).json( travelRoutes );    
 
         } catch ( error ) {
 

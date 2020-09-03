@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 
@@ -13,22 +13,12 @@ export default function Input( props ) {
 
     const handleChange = event => {
 
+        if ( type === 'text')
+            event.target.value = event.target.value.toUpperCase();
+
         if ( onChange )
             onChange( event );
 
-    }
-
-    const onlyNumber = (e) => {
-        var charCode = e.charCode ? e.charCode : e.keyCode;
-        // charCode 8 = backspace   
-        // charCode 9 = tab
-        if (charCode != 8 && charCode != 9) {
-            // charCode 48 equivale a 0   
-            // charCode 57 equivale a 9
-            if (charCode < 48 || charCode > 57) {
-                return false;
-            }
-        }
     }
 
     return (
@@ -44,7 +34,6 @@ export default function Input( props ) {
                 maxLength={spec.maxLength}
                 minLength={spec.minLength}
                 type={type}
-                onKeyPress="return somenteNumeros(event)"
             />
         </div>
     )
