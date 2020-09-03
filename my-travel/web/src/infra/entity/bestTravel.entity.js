@@ -1,7 +1,7 @@
 const bestTravel = {
     origin : '',
     destination : '',
-    bestTravel : ''
+    bestRoute : ''
 }
 
 export default bestTravel;

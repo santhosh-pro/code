@@ -42,7 +42,7 @@ function Browser( props ) {
     const setupActions = useCallback( () => {
 
         const actions = [ 
-            //{ handler: handleClickEdit, className : "", iconName: "edit" },
+            { handler: handleClickEdit, className : "", iconName: "edit" },
             { handler: handleClickDelete, className : "", iconName: "delete" }
         ];
 

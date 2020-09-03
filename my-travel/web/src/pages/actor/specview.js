@@ -32,14 +32,14 @@ const SVRoute = () => {
     svRoute.addString( 'origin', 'Origem', true, 3, 3 );  
     let svDestination = svRoute.addString( 'destination', 'Destino', true, 3, 3 );
 
-    svDestination.onBlur = async ( event, dataObject ) => {
+    svDestination.onAfterBlur = async ( ...params ) => {
 
-       // let dataObject = params[ 1 ];
+        let dataObject = params[ 1 ];
         
         const origin = dataObject.origin;
         const destination = dataObject.destination;
 
-        const response = await get( `travelRoute/bestRoute/${origin}-${destination}` );
+        const response = await api.get( `travelRoute/bestRoute/${origin}-${destination}` );
                                            
         if ( response && response.data ) {
 
@@ -53,11 +53,8 @@ const SVRoute = () => {
 
             const price = data.price;
             bestRoute = bestRoute + ' - ' + price;
-
             dataObject.bestRoute = bestRoute;
 
-            console.log(  dataObject );
-           
         }
 
     }
@@ -68,8 +65,8 @@ const SVRoute = () => {
 
 const SVBestTravel = () => {
 
-    let svBestTravel = new SpecDataView( 'bestTravel', '', SpecViewType.OBJECT );
-    svBestTravel.addString( 'bestTravel', 'Melhor opção', true, 3, 3 );
+    let svBestTravel = new SpecDataView( 'route', '', SpecViewType.OBJECT );
+    svBestTravel.addString( 'bestRoute', 'Melhor opção', true, 3, 3 );
 
     return svBestTravel;
 

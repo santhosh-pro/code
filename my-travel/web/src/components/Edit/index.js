@@ -8,13 +8,15 @@ import ObjectUtils from '../../utils/ObjectUtils';
 import EntityInstance from '../../infra/entity/EntityInstance';
 
 import { ButtonFactory } from '../Button';
+import { useRef } from 'react';
 
 function Edit( props ) {
 
     const [ dataObject, setDataObject ] = useState(undefined);
-
     const { urn, layouts } = props; 
     const { key } = props.match.params; 
+    
+    const [ eventRef, setEventRef ] = useState(undefined);
  
     useEffect( () => {
 
@@ -47,24 +49,49 @@ function Edit( props ) {
     const handleChange = ( event ) => {
 
         event.persist();
+        setEventRef( event );
         updateState( event, dataObject );
 
     }
+
+    
+    const [ afterBlur, setAfterBlur ] = useState(false);
+    useEffect( () => {
+
+        async function onDidBlur() {
+            
+            const prop = getCurrentSVProp( eventRef );
+
+            console.log( prop )
+
+            if ( prop && prop.onAfterBlur ) {
+
+                await prop.onAfterBlur( eventRef, dataObject );
+            }
+
+            setAfterBlur( false );
+
+        }
+
+        onDidBlur();
+
+    }, [ afterBlur ]);
+   
 
     const handleBlur = async ( event ) => {
 
         event.persist();
 
-        console.log( dataObject );
-
         if ( props.onBlur ) {
             props.onBlur( event, dataObject );
         }
 
-        const svProp = getCurrentSVProp( event );
+        //const svProp = getCurrentSVProp( event );
 
-        if ( svProp && svProp.onBlur )
-            await svProp.onBlur( event, dataObject );
+        //if ( svProp && svProp.onAfterBlur )
+        //    await svProp.onAfterBlur( event, dataObject );
+
+        setAfterBlur( true );
 
     
     }
@@ -76,9 +103,8 @@ function Edit( props ) {
 
     const getCurrentSVProp = useCallback( ( e ) => {
 
-        let prop = null;
-        const specLayout = props.specLayout;
-
+        let prop = null; 
+        
         if ( e && layouts ) {
 
             for ( let i = 0; i <= layouts.length-1; i++ ) {

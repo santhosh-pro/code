@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 
 import './styles.css';
+import { useEffect } from 'react';
 
 export default function Input( props ) {
 
-    const { spec, value } = props;
+    const { spec } = props;
+
+    const [ value, setValue ] = useState(undefined);
+
+    useEffect ( () => {
+
+        setValue( props.value );
+
+    }, [ props.value ])
+
     const { onChange, onBlur } = props.events;
     let type = 'text';
 
@@ -15,6 +25,8 @@ export default function Input( props ) {
 
         if ( type === 'text')
             event.target.value = event.target.value.toUpperCase();
+
+        setValue( event.target.value );
 
         if ( onChange )
             onChange( event );
