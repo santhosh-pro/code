@@ -48,7 +48,7 @@ export default function Input( props ) {
             </label>
             <input
                 id={spec.path}                
-                value={value}
+                defaultValue={value}
                 auto-complete="off"
                 onChange={handleChange}
                 onBlur={handleBlur}

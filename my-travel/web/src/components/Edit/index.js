@@ -61,9 +61,7 @@ function Edit( props ) {
         async function onDidBlur() {
             
             const prop = getCurrentSVProp( eventRef );
-
-            console.log( prop )
-
+            
             if ( prop && prop.onAfterBlur ) {
 
                 await prop.onAfterBlur( eventRef, dataObject );

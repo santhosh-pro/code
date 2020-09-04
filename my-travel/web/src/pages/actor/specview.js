@@ -40,6 +40,8 @@ const SVRoute = () => {
         const destination = dataObject.destination;
 
         const response = await api.get( `travelRoute/bestRoute/${origin}-${destination}` );
+        
+        console.log( response );
                                            
         if ( response && response.data ) {
 
