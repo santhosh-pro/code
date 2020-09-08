@@ -43,7 +43,7 @@ describe( 'Route', () => {
 
     describe( 'RemoveRoute', () => {
     
-        it( 'Create new route', async () => {
+        it( 'Delete Route', async () => {
     
             const response = await request( app )
                 .delete( '/travelroute/GRUGYN113' )
