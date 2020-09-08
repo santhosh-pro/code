@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { get, post, put } from '../../service/api';
@@ -8,7 +8,12 @@ import ObjectUtils from '../../utils/ObjectUtils';
 import EntityInstance from '../../infra/entity/EntityInstance';
 
 import { ButtonFactory } from '../Button';
-import { useRef } from 'react';
+
+const StatusType = {
+    EDIT: 'edit',
+    INSERT: 'insert',
+    UNDEFINED: 'undefined'
+}
 
 function Edit( props ) {
 
@@ -17,6 +22,7 @@ function Edit( props ) {
     const { key } = props.match.params; 
     
     const [ eventRef, setEventRef ] = useState(undefined);
+    const statusType = useRef( StatusType.UNDEFINED );
  
     useEffect( () => {
 
@@ -34,9 +40,12 @@ function Edit( props ) {
 
                 }
 
+                statusType.current = StatusType.EDIT;
+
             } else {
 
                 setDataObject( EntityInstance.newInstance( urn ) );
+                statusType.current = StatusType.INSERT;
 
             }
 
@@ -84,13 +93,7 @@ function Edit( props ) {
             props.onBlur( event, dataObject );
         }
 
-        //const svProp = getCurrentSVProp( event );
-
-        //if ( svProp && svProp.onAfterBlur )
-        //    await svProp.onAfterBlur( event, dataObject );
-
         setAfterBlur( true );
-
     
     }
 
@@ -213,16 +216,19 @@ function Edit( props ) {
 
         try {
 
-            alert( key );
+            console.log( dataObject );
 
-            if ( key ) {
+            if ( statusType.current === StatusType.EDIT ) {
 
-                await put( urn, dataObject );
+                await put( `${urn}/${key}`, dataObject );
 
             } else {
 
                 await post( urn, dataObject );
+
             }
+
+            handleClickBack();
 
         } catch ( err ) {
 
@@ -263,7 +269,7 @@ export default withRouter( Edit );
 const createBtnAction = ( handler, className, iconName, param ) => {
 
     if ( handler )
-        return ButtonFactory( 'normal', className, () => handler( handler, param ), iconName );
+        return ButtonFactory( 'normal', className, () => { handler( param ) }, iconName );
     else
         return undefined;
 

@@ -12,15 +12,17 @@ export default function RouteEdit ( props ) {
     layouts.push( layoutRoute );
     
     return (
-        <div id="route-edit" className="container" >
-            <Edit 
-                urn={'travelRoute'}
-                keyProps={['origin', 'destination', 'value']}  
-                layouts={layouts} 
-                layoutType={LayoutType.SINGLE}
-                title={'Edição de Rota'}
-            />  
-        </div>  
+        <form>
+            <div id="route-edit" className="container" >
+                <Edit 
+                    urn={'travelRoute'}
+                    keyProps={['origin', 'destination', 'value']}  
+                    layouts={layouts} 
+                    layoutType={LayoutType.SINGLE}
+                    title={'Edição de Rota'}
+                />  
+            </div>  
+        </form>
     );
 
 }

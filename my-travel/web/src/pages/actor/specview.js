@@ -28,7 +28,7 @@ const SVRouteEdit = () => {
 
 const SVRoute = () => {
 
-    let svRoute = new SpecDataView( 'route', '', SpecViewType.OBJECT );
+    let svRoute = new SpecDataView( 'route', 'Selecione sua rota de viagem', SpecViewType.OBJECT );
     svRoute.addString( 'origin', 'Origem', true, 3, 3 );  
     let svDestination = svRoute.addString( 'destination', 'Destino', true, 3, 3 );
 
@@ -38,23 +38,30 @@ const SVRoute = () => {
         
         const origin = dataObject.origin;
         const destination = dataObject.destination;
+        let bestRoute = '';
 
         const response = await api.get( `travelRoute/bestRoute/${origin}-${destination}` );
-        
-        console.log( response );
-                                           
+    
         if ( response && response.data ) {
 
             const data = response.data;
 
-            let bestRoute = data.bestRoute.reduce( ( bestRoute, item ) => {
+            console.log( `travelRoute/bestRoute/${origin}-${destination}` );
 
-                return bestRoute += ' - ' + item;
+            if ( data ) {
 
-            });
+                if ( data.bestRoute && data.bestRoute.length > 0 ) {
 
-            const price = data.price;
-            bestRoute = bestRoute + ' - ' + price;
+                    bestRoute = `${data.bestRoute.join( ' - ' )} > $${data.price}`;
+
+                } else {
+
+                    bestRoute = `Rota de viagem ${origin}-${destination} não foi encontrada.`;
+
+                }
+
+            }
+            
             dataObject.bestRoute = bestRoute;
 
         }
@@ -67,7 +74,7 @@ const SVRoute = () => {
 
 const SVBestTravel = () => {
 
-    let svBestTravel = new SpecDataView( 'route', '', SpecViewType.OBJECT );
+    let svBestTravel = new SpecDataView( 'route', 'Melhor Rota', SpecViewType.OBJECT );
     svBestTravel.addString( 'bestRoute', 'Melhor opção', true, 3, 3 );
 
     return svBestTravel;

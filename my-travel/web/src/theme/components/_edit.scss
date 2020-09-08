@@ -9,7 +9,7 @@
     border: solid 1px var(--color-line-in-white);  
 }
 
-.common-header {
+.edit-object .common-header {
     width: 100%;
     height: 3.5rem;
     background-color: var(--color-header-backgound);
@@ -23,4 +23,32 @@
     }
     border-top-right-radius: 0.8rem;
     border-top-left-radius: 0.8rem;
+}
+
+.edit-object .toolbar-container .toolbar-buttons {
+    height: 3.3rem;
+    width: 3.3rem;
+
+    background: white;
+    border-radius: 2px;
+    cursor: pointer;
+    transform: rotate(0deg);
+    border: none;
+    text-align: center;
+}
+
+.toolbar-container .toolbar-buttons button img {
+    //  opacity: 0.75;
+    -moz-transform: scale(0.87);
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);   
+}
+
+
+.toolbar-container .toolbar-buttons button img:hover {
+    -moz-transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    //  opacity: 0.99;
+    //   filter: alpha(opacity=100);    
 }

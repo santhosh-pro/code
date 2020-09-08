@@ -3,7 +3,7 @@ import axios from  'axios';
 
 export const api = axios.create({
 
-    baseURL: 'http://localhost:9000/',
+    baseURL: 'http://localhost:9001/',
     headers: {  
                 'Content-Type': 'application/json; charset=utf-8',                    
                 'Accept': '*/*' 
@@ -28,7 +28,7 @@ export const put = async ( uri, data ) => {
 
 }
 
-export const remove = async ( uri, data ) => {
+export const remove = async ( uri ) => {
 
     return await api.delete( `/${uri}` );
 

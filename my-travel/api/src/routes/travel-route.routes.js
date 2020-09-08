@@ -10,7 +10,8 @@ const TravelRoute = app => {
 
     app.route( `${urn}/:key` )
         .get( travelRouteController.findByKey )
-        .delete( travelRouteController.remove );      
+        .delete( travelRouteController.remove )
+        .put( travelRouteController.update );    
 
     app.route( `${urn}/bestRoute/:route` )
         .get( travelRouteController.bestRoute );

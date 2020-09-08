@@ -5,12 +5,14 @@
   "license": "MIT",
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "best-travel" : "nodemon src/shell/bestTravel.js"
   },
   "dependencies": {
     "cls-hooked": "^4.2.2",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "inquirer": "^7.3.3"
   }
 }

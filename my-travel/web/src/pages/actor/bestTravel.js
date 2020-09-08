@@ -10,21 +10,28 @@ export default function BestTravel ( props ) {
 
     let layoutBestTravel = new SpecViewLayout( SpecViewBestTravel );
     layoutBestTravel.layoutType = LayoutType.SINGLE;
+
+    /*let layouts = new SpecViewLayout();
+    layouts.addLayout( layoutRoute, false );
+    layouts.addLayout( layoutBestTravel );
+    layouts.layoutType = LayoutType.SINGLE;*/
     
     let layouts = [];
     layouts.push( layoutRoute );
     layouts.push( layoutBestTravel );
     
     return (
-        <div id="best-travel" className="container" >
-            <Edit 
-                urn={'bestTravel'}
-                keyProps={['origin', 'destination']}  
-                layouts={layouts} 
-                layoutType={LayoutType.SINGLE}
-                title={'Encontre a melhor opção para sua viagem'}
-            />  
-        </div>  
+        <form>
+            <div id="best-travel" className="container" >
+                <Edit 
+                    urn={'bestTravel'}
+                    keyProps={['origin', 'destination']}  
+                    layouts={layouts} 
+                    layoutType={LayoutType.SINGLE}
+                    title={'Encontre a melhor opção para sua viagem'}
+                />  
+            </div>
+        </form>  
     );
 
 }

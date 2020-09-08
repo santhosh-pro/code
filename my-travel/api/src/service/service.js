@@ -16,6 +16,12 @@ class Service {
 
     }
 
+    async update( key, data ) {
+
+        return await this.dataSet.update( key, data );
+
+    }
+
     async find () {
 
         const collection = await this.dataSet.find();

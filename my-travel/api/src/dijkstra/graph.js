@@ -14,7 +14,7 @@ class Graph {
         this.points.push( point );
         this.listAdjacentPoints[ point ] = [];
 
-    };
+    }
 
     addDestinationPoint( point1, point2, amount ) {
 
@@ -32,13 +32,51 @@ class Graph {
 
         });
 
-    };
+    }
 
-    findBestPrice( startNode, endNode ) {
+    async fillGraph( points ) {
+
+        try {
+
+            for ( let i = 0; i < points.length; i++ ) {
+
+                const point = points[ i ];
+
+                const origin = point.origin;
+                const destiny = point.destination;
+            
+                this.addStartingPoints( origin );
+                this.addStartingPoints( destiny );
+
+            }
+
+            for ( let i = 0; i < points.length; i++ ) {
+
+                const point = points[ i ];
+
+                const origin = point.origin;
+                const destiny = point.destination;
+                const value = point.value;
+
+                this.addDestinationPoint( origin, destiny, parseInt( value ) );
+
+            }
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
+
+    }
+
+    async findBestPrice( startNode, endNode ) {
 
         const times = {};
         const backtrace = {};
         const pq = new PriorityQueue();
+        let path = '';
+        let price = 0;
 
         times[ startNode ] = 0;
 
@@ -53,7 +91,7 @@ class Graph {
         });
 
         pq.enqueue( [ startNode, 0 ] );
-
+        
         while ( !pq.isEmpty() ) {
 
             const shortestStep = pq.dequeue();
@@ -65,7 +103,7 @@ class Graph {
 
                     const time = times[ currentNode ] + neighbor.amount;
 
-                    if (time < times[ neighbor.point ] ) {
+                    if ( time < times[ neighbor.point ] ) {
                     
                         times[ neighbor.point ] = time;
                         backtrace[ neighbor.point ] = currentNode;
@@ -79,22 +117,38 @@ class Graph {
 
         }
 
-        const path = [ endNode ];
+        path = [];
         let lastStep = endNode;
 
-        while ( lastStep !== startNode ) {
+        let index = 0;
+        
+        while ( lastStep !== startNode && index <= this.points.length -1 ) {
 
-            path.unshift( backtrace[ lastStep ] );
-            lastStep = backtrace[ lastStep ];
+            const node = backtrace[ lastStep ];
 
-        }
+            if ( node ) {
 
+                path.unshift( backtrace[ lastStep ] );
+                lastStep = backtrace[ lastStep ];
+
+            }
+
+            index += 1;
+
+        } 
+
+        if ( path.length > 0 )
+            path.push( endNode );
+
+        if ( times[ endNode ] )
+            price = times[ endNode ];
+        
         return {
             bestRoute: path,
-            price: times[ endNode ] 
-        };
+            price: price
+        }
 
-    };
-};
+    }
+}
 
 module.exports = Graph;

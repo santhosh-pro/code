@@ -1,7 +1,17 @@
 module.exports = {
 
     getModel( schemaName ) {
-        return require( `${process.cwd()}/src/schema/${schemaName}.schema` );
+
+        try {
+
+            return require( `${process.cwd()}/src/schema/${schemaName}.schema` );
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
+
     }
 
 }

@@ -4,7 +4,7 @@ import ObjectUtils from '../../utils/ObjectUtils';
 
 export default function DataGrid ( props ) {
 
-    const { data, keyProp, specColumns, actions, showTitle } = props;
+    const { data, specColumns, actions, showTitle } = props;
     const { onBeforeSelect, onAfterSelect } = props;
 
     const selectedRowData = useRef();
@@ -119,15 +119,6 @@ export default function DataGrid ( props ) {
 
     } 
 
-    const createBtnAction = ( handler, className, iconName, param ) => {
-
-        if ( handler )
-            return ButtonFactory( 'small', className, () => handler( handler, param ), iconName );
-        else
-            return undefined;
-    
-    }
-
     const handleMouseMove = () => {
 
     }
@@ -164,7 +155,7 @@ export default function DataGrid ( props ) {
                                     { actions &&
                                         actions.map( action => (
 
-                                            createBtnAction( action.handler, action.className, action.iconName, item )
+                                            createBtnAction( action.handler, action.className, action.iconName, data, item )
 
                                         ))
                                     }
@@ -180,5 +171,14 @@ export default function DataGrid ( props ) {
         </div>
 
     )
+
+}
+
+const createBtnAction = ( handler, className, iconName, ...param ) => {
+
+    if ( handler )
+        return ButtonFactory( 'small', className, () => handler( ...param ), iconName );
+    else
+        return undefined;
 
 }

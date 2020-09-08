@@ -4,6 +4,7 @@ import { get } from '../../service/api';
 import ObjectUtils from '../../utils/ObjectUtils';
 import { withRouter } from 'react-router-dom';
 import { ButtonFactory } from '../Button';
+import { remove } from '../../service/api';
 
 function Browser( props ) {
 
@@ -27,7 +28,9 @@ function Browser( props ) {
 
 			if ( response ) {
 				data = response.data;
-			}
+            }
+            
+            console.log( data );
 
             setData( data );
             setKeyProp( getKey );
@@ -132,13 +135,35 @@ function Browser( props ) {
 
     }
 
+    const handleClickDelete = async ( ...params ) => {
 
-    const handleClickDelete = ( event, item ) => {
+        if ( params ) {
 
-        const keyProp = getKey( item );
-        const id = ObjectUtils.getPropertyValue( item, keyProp );
+            const listData = params[ 0 ];
+            const item = params[ 1 ];
 
-        alert( id );
+            var newListData = listData.slice();
+            console.log( newListData );
+    
+            const keyProp = getKey( item );
+            await remove( `${urn}/${keyProp}` )
+
+            
+            let index = newListData.findIndex( item => {
+    
+                const keyValue = getKey( item );
+                return keyValue === keyProp;
+        
+            });
+    
+            if ( index >= 0 ) {
+    
+                newListData.splice( index, 1 );
+                setData( newListData );
+    
+            }
+
+        }
 
     }
     
@@ -152,17 +177,15 @@ function Browser( props ) {
 
         const response = await get( urn );
        
-			let data = [];
+        let data = [];
 
-			if ( response ) {
-				data = response.data;
-			}
+        if ( response ) {
+            data = response.data;
+        }
 
-			setData( data );
+        setData( data );
 
     }
-
-    
    
     return (
         <div className="browser" >
@@ -175,9 +198,6 @@ function Browser( props ) {
                 <div className="toolbar-buttons">
                 {
                     createBtnAction( handleClickNew, '', 'add', null )
-                }
-                {
-                    createBtnAction( handleClickDelete, '', 'delete', null )
                 }
                 {
                     createBtnAction( handleClickRefresh, '', 'refresh', null )

@@ -1,36 +1,36 @@
-const readline = require( 'readline' );
 const modelProvider = require( '../infra/model-provider' );
 const fs = require( 'fs' );
 const Type = require( '../infra/type' );
-const { deepStrictEqual } = require('assert');
 
-class CVSBinding {
+class CSVBinding {
     
-    constructor ( uri ) {
+    constructor( url ) {
 
-        this._uri = uri;
-
-    }
-
-    async close() {
-
-        fs.existsSync( this._uri )
-            await fs.closeSync();
+        this.url = url;
 
     }
 
     async getContentFile () {
 
-        let lines = [];
+        try {
 
-        if ( fs.existsSync( this._uri ) ) {
+            let lines = [];
 
-            const data = await fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
-            lines = data.split( '\n' );  
+            if ( await fs.existsSync( this.url ) ) {
+                        
+                const data = await fs.readFileSync( this.url , { encoding:'utf8', flag: 'r' } );
+                lines = data.split( '\n' );  
+
+            }
+
+            return lines;
+
+        } catch ( err ) {
+
+            throw err;
 
         }
 
-        return lines;
     }
 
     async fileIsEmpty() {
@@ -40,168 +40,334 @@ class CVSBinding {
             
     }
 
-    async create( schemaName, data ) {
+    getKeyFields( schemaName ) {
 
-        if ( data ) {
+        let keys = [];
+        let model = modelProvider.getModel( schemaName );
+        const fields = Object.keys( model );
 
-            const model = modelProvider.getModel( schemaName );
-            const props = Object.keys( model );
+        for ( let i = 0; i <= fields.length-1; i++ ) {
 
-            let prop = props[ 0 ];
-            let value = data[ prop  ];
+            const fieldName = fields[ i ];
+            let field = model[ fieldName ];
+            field[ 'fieldName' ] = fieldName;
+            
+            if ( field.isKey ) {
 
-            let register = value;
-
-            for ( let i = 1; i <= props.length -1; i++ ) {
-
-                prop = props[ i ];
-
-                value = data[ prop ]
-
-                register = `${register},${value}`;
+                keys.push( field );
 
             }
 
-            if ( await this.fileIsEmpty() ) 
-                fs.writeFileSync( this._uri, register, { encoding:'utf8', flag : 'w' } );
-            else    
-                fs.writeFileSync( this._uri, '\n' + register, { encoding:'utf8', flag : 'a+' } );
-
         }
 
-        return data;
+        return keys;
 
     }
 
-    async find( schemaName ) {
-        
-        let model = modelProvider.getModel( schemaName );
+    async validateField( model, fieldName, value ) {
 
-        const columnsHeader = Object.keys( model );
+        let message = '';
+        let isValid = true;
 
-        const count = columnsHeader.length;
-        let collection = [];
+        if ( model[ fieldName ].required ) {
 
-        const data = fs.readFileSync( this._uri, { encoding:'utf8', flag: 'r' } );
-        const lines = data.split( '\r\n' );
+            if ( !value || value.length === 0 ) {
 
-        for ( let i = 0; i <= lines.length -1; i++ ) {
+                message = `Field ${fieldName} is required.`;
+                isValid = false;
 
-            const line = lines[ i ];
-            const columnsData = line.split( ',' );
+            }
 
-            let register = {};
+        } 
 
-            for ( let i = 0; i <= columnsHeader.length -1; i++ ) {
+        if ( isValid && value.length > model[ fieldName ].length ) {
 
-                const propName = columnsHeader[ i ];
-                const prop = model[ propName ];
-                const columnData = columnsData[ i ];
+            message = `Field ${fieldName} larger than supported.`;
+            isValid = false;
 
-                if ( prop.type === Type.Number ) {
+        }
 
-                    if ( prop.decimal > 0 )
-                        register[ propName ] = parseFloat( columnData );
-                    else
-                        register[ propName ] = parseInt( columnData );
+        return {
+            isValid : isValid,
+            message : message
+        }
 
-                } else {
+    }
 
-                    register[ propName ] = columnData;
+    async dataExist( data, schemaName ) {
+
+        const keyValue = this.getKeyValue( data, schemaName );
+        return this.findByKey( schemaName, keyValue );
+
+    }
+
+    async create( schemaName, data ) {
+
+        let validate = null;
+
+        try {
+
+            if ( ! await fs.existsSync( this.url ) )
+                await fs.writeFileSync( this.url, '' );  
+
+            if ( data ) {
+
+                const dataExist = await this.dataExist( data, schemaName );
+
+                console.log( 'sssss', dataExist );
+
+                if ( dataExist ) 
+                    throw new ( 'Primary key violation.' );
+
+                let model = modelProvider.getModel( schemaName );
+                const fields = Object.keys( model );
+
+                let field = fields[ 0 ];
+                let value = data[ field ];
+
+                validate = await this.validateField( model, field, value );
+
+                if ( !validate.isValid )
+                    throw new Error( validate.message );
+
+                let register = value;
+
+                for ( let i = 1; i <= fields.length -1; i++ ) {
+
+                    field = fields[ i ];
+
+                    value = data[ field ];
+
+                    validate = await this.validateField( model, field, value );
+
+                    if ( !validate.isValid )
+                        throw new Error( validate.message );
+
+                    register = `${register},${value}`;
 
                 }
 
+                if ( await this.fileIsEmpty() ) 
+                    fs.writeFileSync( this.url, register, { encoding: 'utf8', flag : 'w' } );
+                else    
+                    fs.writeFileSync( this.url, '\n' + register, { encoding:'utf8', flag : 'a+' } );
+
             }
 
-            collection.push( register );
+            return data;
+
+        } catch ( err ) {
+
+            throw err;
 
         }
 
-
-
-        if ( collection && collection[ 0 ].length === 0 )
-            return [];
-        else    
-            return collection;
-
     }
 
-    async findByKey( schemaName, key ) {
+    async update( schemaName, keyValue, data ) {
 
-        const collection = await this.find( schemaName );
+        try {
 
-        if ( collection && collection.length > 1 ) {
-        
-            collection.sort( ( item1, item2 ) => { 
-                var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
-                var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
-                return x < y ? -1 : x > y ? 1 : 0;
-            }); 
+            let collection = [];
+            let dataUpdated = null;
+            let index = -1;
 
-         }
-
-        return collection.find( item => {
-
-            if ( key === `${item.origin.toUpperCase()}${item.destination.toUpperCase()}${item.value}` )
-                return item;
-           
-        });
-
-    }
-
-    async remove( schemaName, key ) {
-
-        let collection = [];
-
-        if ( fs.existsSync( this._uri ) ) {
+            if ( ! await fs.existsSync( this.url ) )
+                throw ( `Data repository ${schemaName} not found.` );
 
             collection = await this.find( schemaName );
-            
-            if ( collection && collection.length > 1 ) {
-            
-                collection.sort( ( item1, item2 ) => { 
-                    var x = `${item1.origin.toUpperCase()}${item1.destination.toUpperCase()}${item1.value}`;
-                    var y = `${item2.origin.toUpperCase()}${item2.destination.toUpperCase()}${item2.value}`;
-                    return x < y ? -1 : x > y ? 1 : 0;
-                }); 
 
-            }
+            index = collection.findIndex( item => {
 
-            const index = collection.findIndex( item => {
+                let value = this.getKeyValue( data, schemaName );
+                let kv = this.getKeyValue( item, schemaName )
 
-                return `${item.origin.toUpperCase()}${item.destination.toUpperCase()}${item.value}` === key;
+                return kv === value;
         
             });
 
             if ( index >= 0 ) {
 
-                collection.splice( index, 1 );
+                throw new Error( 'Primary key violation.' );
 
             }
 
-            await fs.unlinkSync( this._uri );
+            index = collection.findIndex( item => {
 
-        }  else {  
+                let value = this.getKeyValue( item, schemaName );
+                return keyValue === value;
         
-            await fs.writeFileSync( this._uri );
+            });
+
+            if ( index >= 0 ) {
+
+                dataUpdated = collection[ index ];
+                collection[ index ] = data;
+
+                await fs.unlinkSync( this.url );
+
+                for ( let i = 0; i <= collection.length-1; i++) {
+
+                    const register = collection[ i ];
+                    await this.create( schemaName, register );
+
+                }
+
+            } 
+
+            return dataUpdated;
+
+        } catch ( err ) {
+
+            throw err;
 
         }
 
-        for ( let i = 0; i <= collection.length-1; i++) {
+    }
 
-            const register = collection[ i ];
+    async find( schemaName ) {
 
-            this.create( schemaName, register );
+        try {
+
+            let collection = [];
+            const model = modelProvider.getModel( schemaName );
+            const fields = Object.keys( model );
+            const lines = await this.getContentFile();
+
+            for ( let i = 0; i <= lines.length -1; i++ ) {
+
+                const line = lines[ i ];
+                const columnsData = line.split( ',' );
+
+                let register = {};
+
+                for ( let i = 0; i <= fields.length -1; i++ ) {
+
+                    const fieldName = fields[ i ];
+                    const field = model[ fieldName ];
+                    const columnData = columnsData[ i ];
+
+                    if ( field.type === Type.Number ) {
+
+                        if ( field.decimal > 0 )
+                            register[ fieldName ] = parseFloat( columnData );
+                        else
+                            register[ fieldName ] = parseInt( columnData );
+
+                    } else {
+
+                        register[ fieldName ] = columnData;
+
+                    }
+
+                }
+
+                collection.push( register );
+
+            }
+
+            if ( collection && collection[ 0 ].length === 0 )
+                return [];
+            else    
+                return collection;
+
+        } catch ( err ) {
+
+            throw err;
 
         }
 
-       return key;
+    }
+
+    getKeyValue( item, schemaName ) {
+
+        try {
+
+            let keyValue = '';
+            const keyFields = this.getKeyFields( schemaName );
+
+            for ( let i = 0; i <= keyFields.length -1; i++ ) {
+
+                const keyField = keyFields[ i ];
+
+                keyValue = keyValue + `${item[ keyField.fieldName ]}`;
+
+            }
+
+            return keyValue;
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
+
+    }
+
+    async findByKey( schemaName, keyValue ) {
+
+        try {
+
+            const collection = await this.find( schemaName );
+            return collection.find( item => {
+
+                let value = this.getKeyValue( item, schemaName );
+                return keyValue === value;
+            
+            });
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
+
+    }
+
+    async remove( schemaName, keyValue ) {
+
+        try {
+
+            let collection = [];
+            let dataDeleted = null;
+
+            if ( ! await fs.existsSync( this.url ) )
+                throw ( `Data repository ${schemaName} not found.` );
+
+            collection = await this.find( schemaName );
+
+            let index = collection.findIndex( item => {
+
+                let value = this.getKeyValue( item, schemaName );
+                return keyValue === value;
+        
+            });
+
+            if ( index >= 0 ) {
+
+                dataDeleted = collection.splice( index, 1 );
+
+                await fs.unlinkSync( this.url );
+
+                for ( let i = 0; i <= collection.length-1; i++) {
+    
+                    const register = collection[ i ];
+                    await this.create( schemaName, register );
+    
+                }
+    
+            } 
+
+            return dataDeleted;
+
+        } catch ( err ) {
+
+            throw err;
+
+        }
 
     }
 
 }
 
-module.exports = CVSBinding;
-
-
-//https://node.readthedocs.io/en/latest/api/readline/
+module.exports = CSVBinding;

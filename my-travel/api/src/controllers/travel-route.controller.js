@@ -53,6 +53,24 @@ const TravelRouteController = {
 
     },
 
+    async update( req, res, next ) {
+
+        try {
+
+            const { key } = req.params;
+            const travelRoute = req.body;
+            
+            const travelRoutes = await travelService().update( key, travelRoute );
+            res.status( 200 ).json( travelRoutes );
+
+        } catch ( error ) {
+
+            next( error );
+
+        }
+
+    },
+
     async remove( req, res, next ) {
 
         try {
