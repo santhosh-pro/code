@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require( 'cors' );
 const consign = require('consign');
 const dbConnectionProviderMiddleware = require('../src/middleware/connection-provider.middleware');
+const errorHandlerMiddleware = require( './middleware/error-handler.middleware' );
 const context = require( '../src/server/server-context' );
 
 
@@ -13,15 +14,11 @@ app.use( cors() );
 app.use( express.json() );
 app.use( dbConnectionProviderMiddleware );
 
-/*
-for (let i = 2; i < process.argv.length; i++) {
-    hello( process.argv[i] );
-}
-*/
-
 consign({ cwd: 'src', verbose: false })
     .include( 'routes' )
     .into( app );
+
+app.use( errorHandlerMiddleware );
 
 const port = 9001;
 
