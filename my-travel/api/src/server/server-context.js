@@ -50,7 +50,7 @@ module.exports = {
     getDBConnection () {
 
         const context = getContext();
-        return context.get( 'dbConn' );
+        return context.get( 'csvConn' );
         
     },
 

@@ -3,16 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
   "scripts": {
-    "start": "nodemon src/app.js",
-    "best-route" : "nodemon src/shell/best-route.js"
+    "start-rest": "nodemon src/server.js",
+    "dev-rest": "nodemon src/server.js --ignore __tests__",
+    "start-console": "nodemon src/shell/best-route.js",
+    "dev-console": "nodemon src/shell/best-route.js",
+    "test": "jest"
   },
   "dependencies": {
     "cls-hooked": "^4.2.2",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "supertest": "^4.0.2"
   }
 }

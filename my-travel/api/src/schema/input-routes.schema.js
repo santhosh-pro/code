@@ -9,7 +9,7 @@ const InputRoutes = {
         length : 3
     },
 
-    destination : {
+    destiny : {
         type : type.String,
         required : true,
         isKey : true,

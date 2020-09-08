@@ -114,8 +114,6 @@ class CSVBinding {
 
                 const dataExist = await this.dataExist( data, schemaName );
 
-                console.log( 'sssss', dataExist );
-
                 if ( dataExist ) 
                     throw new ( 'Primary key violation.' );
 

@@ -15,7 +15,7 @@ const TravelRouteController = {
 
         } catch ( error ) {
 
-            next( error );
+            next( error );          
 
         }
 
@@ -26,7 +26,11 @@ const TravelRouteController = {
         try {
 
             const travelRoutes = await travelService().find();
-            res.status( 200 ).json( travelRoutes );
+
+            if ( travelRoutes && travelRoutes.length > 0 )
+                res.status( 200 ).json( travelRoutes );
+            else
+                res.status( 204 ).json( travelRoutes );    
 
         } catch ( error ) {
 
@@ -43,7 +47,11 @@ const TravelRouteController = {
             const { key } = req.params;
             
             const travelRoutes = await travelService().findByKey( key );
-            res.status( 200 ).json( travelRoutes );
+
+            if ( travelRoutes )
+                res.status( 200 ).json( travelRoutes );
+            else
+                res.status( 404 ).json( travelRoutes );
 
         } catch ( error ) {
 

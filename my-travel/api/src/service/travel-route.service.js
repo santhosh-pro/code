@@ -16,7 +16,7 @@ class TravelRouteService extends Service {
             if ( route ) {
         
                 route.origin = route.origin.toUpperCase(); 
-                route.destination = route.destination.toUpperCase();  
+                route.destiny = route.destiny.toUpperCase();  
     
                 return await this.dataSet.create( route );
            
@@ -40,13 +40,13 @@ class TravelRouteService extends Service {
             
             const locations = route.split( '-' );
             const origin = locations[ 0 ];
-            const destination = locations[ 1 ];
+            const destiny = locations[ 1 ];
             const routes = await this.find();
 
             const map = new Graph();
             await map.fillGraph( routes ); 
 
-            return await map.findBestPrice( origin, destination );
+            return await map.findBestRoute( origin, destiny );
             
         } catch( err ) {
 

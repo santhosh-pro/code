@@ -16,7 +16,7 @@ class Graph {
 
     }
 
-    addDestinationPoint( point1, point2, amount ) {
+    addEndPoint( point1, point2, amount ) {
 
         this.listAdjacentPoints[ point1 ].push({
 
@@ -43,7 +43,7 @@ class Graph {
                 const point = points[ i ];
 
                 const origin = point.origin;
-                const destiny = point.destination;
+                const destiny = point.destiny;
             
                 this.addStartingPoints( origin );
                 this.addStartingPoints( destiny );
@@ -55,10 +55,10 @@ class Graph {
                 const point = points[ i ];
 
                 const origin = point.origin;
-                const destiny = point.destination;
+                const destiny = point.destiny;
                 const value = point.value;
 
-                this.addDestinationPoint( origin, destiny, parseInt( value ) );
+                this.addEndPoint( origin, destiny, parseInt( value ) );
 
             }
 
@@ -70,7 +70,7 @@ class Graph {
 
     }
 
-    async findBestPrice( startNode, endNode ) {
+    async findBestRoute( startNode, endNode ) {
 
         const times = {};
         const backtrace = {};

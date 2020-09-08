@@ -20,7 +20,7 @@ const executeShell = async () => {
 
     } else if ( !input || !input.route || input.route.split( '-' ).length !== 2 ) {
 
-        console.log( 'WARNING: Invalid route. Use the "origin-destination" format. Example: GRU-CDG.' );
+        console.log( 'WARNING: Invalid route. Use the "origin-destiny" format. Example: GRU-CDG.' );
         executeShell();
         return;
 
@@ -35,7 +35,7 @@ const executeShell = async () => {
 
     if ( !origin || origin.length === 0 ) {
 
-        console.log( 'WARNING: The route origin is invalid. Use the "origin-destination" format. Example: GRU-CDG.' );
+        console.log( 'WARNING: The route origin is invalid. Use the "origin-destiny" format. Example: GRU-CDG.' );
         executeShell();
         return;
 
@@ -43,13 +43,13 @@ const executeShell = async () => {
 
     if ( !destiny || destiny.length === 0 ) {
 
-        console.log( 'WARNING: The route destiny is invalid. Use the "origin-destination" format. Example: GRU-CDG.' );
+        console.log( 'WARNING: The route destiny is invalid. Use the "origin-destiny" format. Example: GRU-CDG.' );
         executeShell();
         return;
 
     }
 
-    const { bestRoute, price } = await map.findBestPrice( origin.toUpperCase(), destiny.toUpperCase() );
+    const { bestRoute, price } = await map.findBestRoute( origin.toUpperCase(), destiny.toUpperCase() );
     
     console.log( `best route: ${ bestRoute.join(' - ') } > $${ price }` );
     executeShell();

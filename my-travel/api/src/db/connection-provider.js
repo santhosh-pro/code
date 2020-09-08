@@ -2,7 +2,7 @@ const context = require( '../server/server-context' );
 
 function getDBConnection () {
 
-    var db = context.get( 'dbConn' );
+    var db = context.get( 'csvConn' );
     return db;
 
 } 
