@@ -31,12 +31,7 @@
     "docker:push:staging": "docker push waproject/waproject-base-api:staging",
     "deploy-server": "scripts/deploy-server.sh"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "concurrently -r \"yarn lint\" \"yarn tsc --noEmit\"",
-      "post-merge": "yarn"
-    }
-  },
+
   "dependencies": {
     "@nestjs/common": "6.10.11",
     "@nestjs/core": "6.10.11",
@@ -93,7 +88,7 @@
     "eslint": "6.7.2",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-prettier": "3.1.2",
-    "husky": "3.1.0",
+  
     "inquirer": "7.0.1",
     "jest": "24.9.0",
     "jest-extended": "0.11.2",
