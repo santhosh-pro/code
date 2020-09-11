@@ -37,12 +37,15 @@ const AdminPage = memo((props: {}) => {
   const mainContent = useRef<HTMLDivElement>();
   const [menu] = useState([
     { path: '/', display: 'Dashboard', icon: ViewDashboardIcon },
-    {
-      path: '/usuarios',
-      display: 'Usuários',
+    { path: '/usuarios', display: 'Usuários',
       // role: enRoles.admin,
       icon: AccountMultipleIcon
     },
+    {
+      path: '/cliente', display: 'Clientes', icon: AccountMultipleIcon
+    },    
+    { path: '/pedido', display: 'Pedidos', icon: AccountMultipleIcon
+    },    
     { path: '/exemplos', display: 'Exemplos', icon: StarIcon }
   ]);
 

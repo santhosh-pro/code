@@ -3,7 +3,8 @@ const childProcess = require('child_process');
 const cleanup = require(require('path').join(__dirname, 'cleanup'));
 const rimraf = require('rimraf');
 
-const repoSeed = process.env.npm_package_repository_seed || 'git@bitbucket.org:waproject/waproject-base-api.git';
+//const repoSeed = process.env.npm_package_repository_seed || 'git@bitbucket.org:waproject/waproject-base-api.git';
+const repoSeed = process.env.npm_package_repository_seed || '';
 
 async function init() {
   await checkDeps();
