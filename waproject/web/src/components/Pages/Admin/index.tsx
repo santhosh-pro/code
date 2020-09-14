@@ -9,6 +9,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DashboardIndexPage from './Dashboard';
 import SamplePage from './Sample';
 import UserIndexPage from './Users';
+import CustomerIndexPage from '../CRM/Customers';
 
 export const ScrollTopContext = React.createContext<Function>(() => {});
 
@@ -36,17 +37,27 @@ const AdminPage = memo((props: {}) => {
 
   const mainContent = useRef<HTMLDivElement>();
   const [menu] = useState([
-    { path: '/', display: 'Dashboard', icon: ViewDashboardIcon },
-    { path: '/usuarios', display: 'Usuários',
+    { path: '/', 
+      display: 'Dashboard', 
+      icon: ViewDashboardIcon 
+    },
+    { path: '/usuarios', 
+      display: 'Usuários',
       // role: enRoles.admin,
       icon: AccountMultipleIcon
     },
     {
-      path: '/cliente', display: 'Clientes', icon: AccountMultipleIcon
+      path: '/clientes', 
+      display: 'Clientes', 
+      icon: AccountMultipleIcon
     },    
-    { path: '/pedido', display: 'Pedidos', icon: AccountMultipleIcon
+    { path: '/pedido', 
+      display: 'Pedidos', 
+      icon: AccountMultipleIcon
     },    
-    { path: '/exemplos', display: 'Exemplos', icon: StarIcon }
+    { path: '/exemplos', 
+      display: 'Exemplos', 
+      icon: StarIcon }
   ]);
 
   const scrollTop = useCallback(() => setTimeout(() => mainContent.current.scrollTo(0, 0), 100), []);
@@ -60,6 +71,7 @@ const AdminPage = memo((props: {}) => {
             <Switch>
               <Route path='/exemplos' component={SamplePage} />
               <Route path='/usuarios' component={UserIndexPage} />
+              <Route path='/clientes' component={CustomerIndexPage} />
               <Route path='/' component={DashboardIndexPage} />
               <Route render={renderRedirect} />
             </Switch>

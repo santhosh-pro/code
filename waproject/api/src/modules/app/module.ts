@@ -8,10 +8,32 @@ import { DeviceRepository } from './repositories/device';
 import { UserRepository } from './repositories/user';
 import { AuthService } from './services/auth';
 import { UserService } from './services/user';
+import { CustomerModule } from 'modules/crm/module';
+import { CustomerController } from 'modules/crm/controllers/customer';
+import { CustomerRepository } from 'modules/crm/repositories/customer';
+import { CustomerService } from 'modules/crm/services/customer';
+
+
 
 @Module({
-  imports: [HttpModule, CommonModule, DatabaseModule],
-  controllers: [AuthController, ProfileController],
-  providers: [AuthService, UserService, UserRepository, DeviceRepository]
+  imports: [ 
+    HttpModule, 
+    CommonModule, 
+    DatabaseModule,
+    CustomerModule
+  ],
+  controllers: [
+    AuthController, 
+    ProfileController,
+    CustomerController
+  ],
+  providers: [  
+    AuthService, 
+    UserService, 
+    UserRepository, 
+    DeviceRepository,
+    CustomerRepository,
+    CustomerService
+  ]
 })
 export class AppModule {}

@@ -9,7 +9,7 @@ export default interface IUser {
   fullName?: string;
 
   createdDate?: Date;
-  updatedDate?: Date;
+  updatedDate?: Date; 
 }
 
 export enum enRoles {
