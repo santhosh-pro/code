@@ -1,13 +1,12 @@
 import * as Knex from 'knex';
-import { enRoles, ICustomer } from 'modules/database/interfaces/customer';
+import { ICustomer } from 'modules/database/interfaces/customer';
 
 export async function seed(knex: Knex): Promise<void> {
   const customer: ICustomer = {
     firstName: 'America Soft',
     lastName: '',
     email: 'americasoft@gmail.com.br',
-    federalDoc: '03961263000155', //senha@123
-    roles: enRoles.user as any,
+    federalDoc: '03961263000155', //senha@123    
     createdDate: new Date(),
     updatedDate: new Date()
   };

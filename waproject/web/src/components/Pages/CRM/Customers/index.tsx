@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo } from 'react'
 import { Route, Switch } from 'react-router-dom';
 
 import CustomerListPage from './List';

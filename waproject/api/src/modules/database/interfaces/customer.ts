@@ -3,12 +3,12 @@ export interface ICustomer {
     firstName: string;
     lastName?: string;
     federalDoc?: string;
-    email?: string;
-    roles?: enRoles[];
+    email?: string;    
     createdDate?: Date;
     updatedDate?: Date;
 }
 
+/*
 export enum enRoles {
     sysAdmin = 'sysAdmin',
     admin = 'admin',
@@ -20,3 +20,4 @@ export function listPublicRoles(): enRoles[] {
     return [enRoles.admin, enRoles.user];
 
 }
+*/

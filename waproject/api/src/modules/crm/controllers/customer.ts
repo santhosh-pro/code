@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query } from 
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthRequired } from 'modules/common/guards/token';
 import { ICurrentCustomer } from 'modules/common/interfaces/currentCustomer';
-import { enRoles, listPublicRoles } from 'modules/database/interfaces/customer';
+import { enRoles } from 'modules/database/interfaces/user';
 import { Customer } from 'modules/database/models/customer';
 
 import { CustomerRepository } from '../repositories/customer';
@@ -23,24 +23,7 @@ export class CustomerController {
     @ApiResponse({ status: 200, type: [Customer] })
     public async list( @Query() model: ListValidator ) {
 
-        console.log( 'funcionou de metodo' );
         return this.customerRepositry.list( model );
-        //return 'TESTE';
-
-    }
-
-    @Get('roles')
-    @ApiResponse({ status: 200, type: 'string', isArray: true })
-    public async roles() {
-
-        const roles = listPublicRoles();
-
-        const rolesDescriptions: any = {
-            admin: { name: 'Administrador', description: 'Acesso total a todas as funcionalidades' },
-            user: { name: 'Usuário', description: 'Accesso Limitado' }
-        };
-
-        return roles.map( role => ({ role, ...rolesDescriptions[role] }) ).filter(role => role);
 
     }
 

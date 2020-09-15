@@ -32,7 +32,7 @@ const validationSchema = yup.object().shape({
     lastName: yup.string().required().min(3).max(50),
     federalDoc: yup.string().required().min(11).max(14),
     email: yup.string().required().email().max(150),
-    roles: yup.array().required().min(1)
+   // roles: yup.array().required().min(1)
 });
 
 const useStyle = makeStyles({
@@ -53,8 +53,11 @@ const FormDialog = memo((props: IProps) => {
         initialValues: { roles: [] },
         validationSchema,
         onSubmit(model) {
+
+            console.log(model);
+
             return customerService.save(model).pipe(
-                tap(customer => {
+                tap( customer => {
                     Toast.show(`${customer.firstName} foi salvo${model.id ? '' : ', um email foi enviado com a senha'}`);
                     props.onComplete(customer);
                 }),
@@ -100,11 +103,13 @@ const FormDialog = memo((props: IProps) => {
                                 <Grid item xs={12} sm={6}>
                                     <TextField label='Sobrenome' name='lastName' formik={formik} />
                                 </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField label='CNPJ/CPF' name='federalDoc' formik={formik} />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField label='Email' name='email' type='email' formik={formik} />
+                                </Grid>
                             </Grid>
-
-                            <TextField label='Email' name='email' type='email' formik={formik} />
-
-
                         </Fragment>
                     )}
                 </DialogContent>
@@ -112,7 +117,7 @@ const FormDialog = memo((props: IProps) => {
                     <Button onClick={props.onCancel}>Cancelar</Button>
                     <Button color='primary' variant='contained' type='submit' disabled={formik.isSubmitting || !roles}>
                         Salvar
-          </Button>
+                    </Button>
                 </DialogActions>
             </form>
         </Dialog>

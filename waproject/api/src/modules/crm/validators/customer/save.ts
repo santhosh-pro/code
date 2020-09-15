@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-    IsArray,
+    //IsArray,
     IsEmail,
-    IsIn,
+    //IsIn,
     IsInt,
     IsNotEmpty,
     IsOptional,
@@ -11,7 +11,7 @@ import {
     Min,
     MinLength
 } from 'class-validator';
-import { enRoles, ICustomer, listPublicRoles } from 'modules/database/interfaces/customer';
+import { ICustomer } from 'modules/database/interfaces/customer';
 
 export class SaveValidator implements ICustomer {
     @IsOptional()
@@ -34,14 +34,23 @@ export class SaveValidator implements ICustomer {
     public lastName?: string;
 
     @IsNotEmpty()
+    @IsString()
+    @MaxLength(14)
+    @ApiProperty({ required: true, type: 'string', maxLength: 14 })
+    public federalDoc: string;
+
+
+    @IsNotEmpty()
     @IsEmail()
     @MaxLength(150)
     @ApiProperty({ required: true, type: 'string', maxLength: 150 })
     public email: string;
 
+    /*
     @IsNotEmpty()
     @IsArray()
     @IsIn(listPublicRoles(), { each: true })
     @ApiProperty({ required: true, enum: listPublicRoles(), isArray: true })
     public roles: enRoles[];
+    */
 }

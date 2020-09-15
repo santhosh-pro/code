@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IPaginationParams } from 'modules/common/interfaces/pagination';
-import { enRoles, ICustomer } from 'modules/database/interfaces/customer';
+import { ICustomer } from 'modules/database/interfaces/customer';
 import { Customer } from 'modules/database/models/customer';
 import { Page, Transaction } from 'objection';
 
@@ -10,8 +10,7 @@ export class CustomerRepository {
     public async list( params: IPaginationParams, transaction?: Transaction ): Promise<Page<Customer>> {
 
         let query = Customer.query( transaction )
-            .select( '*' )
-            .whereNot( 'roles', 'like', enRoles.sysAdmin )
+            .select( '*' )       
             .page( params.page, params.pageSize );
 
         if ( params.orderBy ) {
