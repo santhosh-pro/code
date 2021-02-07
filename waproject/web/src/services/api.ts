@@ -31,6 +31,12 @@ export class ApiService {
   }
 
   public post<T = any>(url: string, body: any): Rx.Observable<T> {
+<<<<<<< HEAD
+=======
+
+    console.log( '..................', url )
+
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
     return this.request<T>('POST', url, body).pipe(
       map(({ response }) => response),
       filter(response => response !== undefined)

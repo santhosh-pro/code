@@ -19,8 +19,13 @@ services:
     image: postgres:11.5-alpine
     environment:
       - POSTGRES_DB=waproject
+<<<<<<< HEAD
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123
+=======
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=123mudar
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
     volumes:
       - ./.data/postgresql:/var/lib/postgresql/data
     ports:

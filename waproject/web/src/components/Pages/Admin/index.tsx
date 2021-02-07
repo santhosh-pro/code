@@ -9,6 +9,10 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DashboardIndexPage from './Dashboard';
 import SamplePage from './Sample';
 import UserIndexPage from './Users';
+<<<<<<< HEAD
+=======
+import CustomerIndexPage from '../CRM/Customers';
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
 
 export const ScrollTopContext = React.createContext<Function>(() => {});
 
@@ -36,17 +40,40 @@ const AdminPage = memo((props: {}) => {
 
   const mainContent = useRef<HTMLDivElement>();
   const [menu] = useState([
+<<<<<<< HEAD
     { path: '/', display: 'Dashboard', icon: ViewDashboardIcon },
     { path: '/usuarios', display: 'Usuários',
+=======
+    { path: '/', 
+      display: 'Dashboard', 
+      icon: ViewDashboardIcon 
+    },
+    { path: '/usuarios', 
+      display: 'Usuários',
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
       // role: enRoles.admin,
       icon: AccountMultipleIcon
     },
     {
+<<<<<<< HEAD
       path: '/cliente', display: 'Clientes', icon: AccountMultipleIcon
     },    
     { path: '/pedido', display: 'Pedidos', icon: AccountMultipleIcon
     },    
     { path: '/exemplos', display: 'Exemplos', icon: StarIcon }
+=======
+      path: '/clientes', 
+      display: 'Clientes', 
+      icon: AccountMultipleIcon
+    },    
+    { path: '/pedido', 
+      display: 'Pedidos', 
+      icon: AccountMultipleIcon
+    },    
+    { path: '/exemplos', 
+      display: 'Exemplos', 
+      icon: StarIcon }
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
   ]);
 
   const scrollTop = useCallback(() => setTimeout(() => mainContent.current.scrollTo(0, 0), 100), []);
@@ -60,6 +87,10 @@ const AdminPage = memo((props: {}) => {
             <Switch>
               <Route path='/exemplos' component={SamplePage} />
               <Route path='/usuarios' component={UserIndexPage} />
+<<<<<<< HEAD
+=======
+              <Route path='/clientes' component={CustomerIndexPage} />
+>>>>>>> 12453a9ceac485b936e95ac960e4848602eec2be
               <Route path='/' component={DashboardIndexPage} />
               <Route render={renderRedirect} />
             </Switch>
